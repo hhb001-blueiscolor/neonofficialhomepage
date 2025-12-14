@@ -131,10 +131,11 @@ img {
 
 .tagline {
     font-size: 1.2rem;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.8;
     margin-bottom: var(--spacing-md);
     animation: fadeInUp 1s ease-out 0.2s both;
+    font-family: var(--font-main);
 }
 
 .hero-subtitle {
