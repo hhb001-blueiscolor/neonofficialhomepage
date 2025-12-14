@@ -1,0 +1,44 @@
+---
+import eventsData from '../data/events.json';
+const { events } = eventsData;
+---
+
+<section class="section next-section">
+    <div class="container">
+        <h2 class="section-title">INFORMATION</h2>
+
+        <div class="slider-track">
+            {events.map((event) => (
+                <div class="event-slide">
+                    <div class="next-event">
+                        <div class="next-event-info">
+                            <div class="next-event-title neon-text">{event.title}</div>
+                            {event.images.map((img) => (
+                                <img src={`/images/${img}`} alt={event.title} class="next-event-image" />
+                            ))}
+                            <div class="next-event-date">{event.date}</div>
+                            <div class="next-event-venue">
+                                at {event.venueUrl ? (
+                                    <a href={event.venueUrl} target="_blank">{event.venue}</a>
+                                ) : (
+                                    event.venue
+                                )}
+                            </div>
+                            {event.price && (
+                                <div class="next-event-price">{event.price}</div>
+                            )}
+                            {event.ticketUrl && (
+                                <div class="next-event-price">
+                                    <a href={event.ticketUrl} target="_blank">Ticketはココから</a>
+                                </div>
+                            )}
+                            {event.note && (
+                                <div class="next-event-venue">{event.note}</div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

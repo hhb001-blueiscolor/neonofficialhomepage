@@ -1,0 +1,78 @@
+{
+  "members": [
+    {
+      "id": "kuromaty",
+      "name": "クロマティーゆうや",
+      "photo": "dj_yuya.png",
+      "x": "https://x.com/kuromaty_yuya",
+      "instagram": "https://www.instagram.com/kuromaty_yuya/",
+      "externalLink": null,
+      "externalLinkText": null,
+      "qrCode": null,
+      "order": 1
+    },
+    {
+      "id": "smyle",
+      "name": "SMYLE",
+      "photo": "dj_smyle.jpg",
+      "x": "https://x.com/SMYLE_TheBlues",
+      "instagram": null,
+      "externalLink": null,
+      "externalLinkText": null,
+      "qrCode": null,
+      "order": 2
+    },
+    {
+      "id": "ishimaru",
+      "name": "いしまる",
+      "photo": "dj_ishimaru.png",
+      "x": "https://x.com/6ichimarun01029",
+      "instagram": null,
+      "externalLink": null,
+      "externalLinkText": null,
+      "qrCode": null,
+      "order": 3
+    },
+    {
+      "id": "coccham",
+      "name": "coccham",
+      "photo": "dj_coccham.png",
+      "x": "https://x.com/qotomi_amai",
+      "instagram": "https://www.instagram.com/qotomi_amai/",
+      "externalLink": "https://lit.link/qotomiamai",
+      "externalLinkText": "Lit Link",
+      "qrCode": null,
+      "order": 4
+    },
+    {
+      "id": "myan",
+      "name": "みゃん",
+      "photo": "dj_myan.png",
+      "x": "https://x.com/myan____myan",
+      "instagram": "https://www.instagram.com/myan___myan/",
+      "externalLink": "https://lit.link/myanmyan",
+      "externalLinkText": "Lit Link",
+      "qrCode": null,
+      "order": 5
+    },
+    {
+      "id": "abatto",
+      "name": "アバット",
+      "photo": "dj_abbat.jpg",
+      "x": "https://x.com/abaabaabatto",
+      "instagram": null,
+      "externalLink": "https://www.mixcloud.com/%E7%94%B0%E7%95%91%E6%99%BA%E4%B9%8B/tokyo-bootleg-party-mix-drive2/",
+      "externalLinkText": "J-ROCK PARTY MIX DRIVE2",
+      "qrCode": "QR_abbatmix.png",
+      "order": 6
+    }
+  ],
+  "slideshowImages": [
+    "members1.jpg",
+    "members2.jpeg",
+    "members3.jpg",
+    "members4.jpg",
+    "members5.jpg",
+    "members6.jpg"
+  ]
+}
