@@ -2,9 +2,18 @@
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { title, description = "NeoN - 毎月第一火曜日開催のDJパーティー" } = Astro.props;
+const {
+  title,
+  description = "NeoN - 渋谷で毎月第一火曜日開催のJ-ROCK・ジャパニーズロックDJパーティー。バンドサウンドを中心に選曲。TOKYO BOOTLEG、ピストル・ディスコのメンバーが主催。",
+  ogImage = "/images/members1.jpg"
+} = Astro.props;
+
+const siteUrl = "https://neondjneon.netlify.app";
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImageUrl = new URL(ogImage, siteUrl).href;
 ---
 
 <!DOCTYPE html>
@@ -13,8 +22,63 @@ const { title, description = "NeoN - 毎月第一火曜日開催のDJパーテ�
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content={description}>
+    <meta name="keywords" content="NeoN, ネオン, DJパーティー, 渋谷, J-ROCK, ジャパニーズロック, JROCK, 邦ロック, バンドサウンド, TOKYO BOOTLEG, ブトレグ, ピストル・ディスコ, ピストルディスコ, クラブイベント, 毎月第一火曜日">
+    <meta name="author" content="NeoN">
+    <link rel="canonical" href={canonicalUrl}>
+
+    <!-- OGP -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content={canonicalUrl}>
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:image" content={ogImageUrl}>
+    <meta property="og:site_name" content="NeoN">
+    <meta property="og:locale" content="ja_JP">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={ogImageUrl}>
+
     <title>{title}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- 構造化データ (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "NeoN",
+      "alternateName": ["ネオン", "NeoN DJ Party"],
+      "url": siteUrl,
+      "logo": `${siteUrl}/images/logo.png`,
+      "description": "渋谷で毎月第一火曜日開催のJ-ROCK・ジャパニーズロックDJパーティー",
+      "sameAs": [
+        "https://x.com/NeoN_information"
+      ],
+      "event": {
+        "@type": "Event",
+        "name": "NeoN",
+        "description": "J-ROCK・ジャパニーズロック・バンドサウンドDJパーティー",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+          "@type": "Place",
+          "name": "渋谷",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "渋谷区",
+            "addressRegion": "東京都",
+            "addressCountry": "JP"
+          }
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "NeoN"
+        }
+      }
+    })} />
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ809V4CPN"></script>
     <script is:inline>
