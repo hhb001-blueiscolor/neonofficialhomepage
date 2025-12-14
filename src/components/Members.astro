@@ -69,6 +69,9 @@ const sortedMembers = [...members].sort((a, b) => a.order - b.order);
                 <a href="" id="modalDjYoutube" target="_blank" rel="noopener" class="social-link-modal" style="display: none;">
                     <i class="fab fa-youtube"></i>
                 </a>
+                <a href="" id="modalDjTiktok" target="_blank" rel="noopener" class="social-link-modal" style="display: none;">
+                    <i class="fab fa-tiktok"></i>
+                </a>
             </div>
         </div>
     </div>
@@ -84,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
             x: m.x,
             instagram: m.instagram || "",
             youtube: m.youtube || "",
+            tiktok: m.tiktok || "",
             photo: `/images/${m.photo}`,
             externalLink: m.externalLink || "",
             externalLinkText: m.externalLinkText || "",
@@ -118,6 +122,14 @@ document.addEventListener('DOMContentLoaded', function() {
             youtubeEl.style.display = 'flex';
         } else {
             youtubeEl.style.display = 'none';
+        }
+
+        const tiktokEl = document.getElementById('modalDjTiktok');
+        if (dj.tiktok) {
+            tiktokEl.href = dj.tiktok;
+            tiktokEl.style.display = 'flex';
+        } else {
+            tiktokEl.style.display = 'none';
         }
 
         const linkContainer = document.getElementById('modalDjLinkContainer');
