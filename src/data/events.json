@@ -2,36 +2,14 @@
   "events": [
     {
       "id": 1,
-      "title": "NeoN",
-      "date": "2025.12.02(Tue) 19:30〜",
+      "title": "NeoN presents ???",
+      "date": "2026.01.06(Tue) T.B.A",
       "venue": "下北沢CREAM",
       "venueUrl": "https://maps.app.goo.gl/kWn7MfTLiCtdhdjm6",
-      "price": "¥1000-(+1D Order)当日券のみ",
-      "images": ["TT_202512.jpg"],
+      "price": "T.B.A",
+      "images": ["now_printing.svg"],
       "ticketUrl": null,
       "note": null
-    },
-    {
-      "id": 2,
-      "title": "NeoN -Merry monk rusH 2025-",
-      "date": "2025.12.13(Sat) 16:00〜",
-      "venue": "下北沢CREAM",
-      "venueUrl": "https://maps.app.goo.gl/kWn7MfTLiCtdhdjm6",
-      "price": "adv:¥2000(+1D)/door:¥2500(+1D)",
-      "images": ["20251213.jpeg", "TT_20251213.jpg"],
-      "ticketUrl": "https://tiget.net/events/434451",
-      "note": null
-    },
-    {
-      "id": 3,
-      "title": "ロックアンセム2025",
-      "date": "2025.04.05(Sat) - 04.06(Sun)",
-      "venue": "幕張メッセ 9.10.11",
-      "venueUrl": null,
-      "price": null,
-      "images": ["neon_anthem.jpeg"],
-      "ticketUrl": null,
-      "note": "Huge thanks to everyone!"
     }
   ]
 }

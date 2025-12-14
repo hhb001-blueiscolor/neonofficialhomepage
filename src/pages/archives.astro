@@ -1,0 +1,345 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import archivesData from '../data/archives.json';
+
+const { archives } = archivesData;
+
+// 日付でソート（新しい順）
+const sortedArchives = [...archives].sort((a, b) =>
+    new Date(b.sortDate).getTime() - new Date(a.sortDate).getTime()
+);
+
+// 年ごとにグループ化
+const archivesByYear = sortedArchives.reduce((acc, archive) => {
+    if (!acc[archive.year]) {
+        acc[archive.year] = [];
+    }
+    acc[archive.year].push(archive);
+    return acc;
+}, {} as Record<string, typeof archives>);
+
+// 年を降順でソート
+const sortedYears = Object.keys(archivesByYear).sort((a, b) => parseInt(b) - parseInt(a));
+---
+
+<Layout title="Archives - NeoN">
+    <main class="archives-page">
+        <div class="container">
+            <header class="page-header">
+                <a href="/" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>トップへ戻る</span>
+                </a>
+                <h1 class="page-title">ARCHIVES</h1>
+                <p class="page-subtitle">過去開催の情報アーカイブ</p>
+            </header>
+
+            <!-- 年タブ -->
+            <nav class="year-tabs">
+                <button class="year-tab active" data-year="all">ALL</button>
+                {sortedYears.map((year) => (
+                    <button class="year-tab" data-year={year}>{year}</button>
+                ))}
+            </nav>
+
+            <!-- アーカイブ一覧 -->
+            <div class="archives-container">
+                {sortedYears.map((year) => (
+                    <section class="archive-year-section" data-year-section={year}>
+                        <h2 class="year-title">{year}</h2>
+                        <div class="events-grid">
+                            {archivesByYear[year].map((archive) => (
+                                <article class={`event-card ${archive.pinned ? 'pinned' : ''}`}>
+                                    {archive.pinned && (
+                                        <span class="pinned-badge">
+                                            <i class="fas fa-thumbtack"></i>
+                                        </span>
+                                    )}
+                                    <div class="event-card-inner">
+                                        <div class="event-images">
+                                            {archive.images.map((img) => (
+                                                <img
+                                                    src={`/images/${img}`}
+                                                    alt={archive.title}
+                                                    class="event-image"
+                                                    data-lightbox={`/images/${img}`}
+                                                />
+                                            ))}
+                                        </div>
+                                        <div class="event-details">
+                                            <h3 class="event-title">{archive.title}</h3>
+                                            <div class="event-meta">
+                                                <p class="event-date">
+                                                    <i class="fas fa-calendar-alt"></i>
+                                                    {archive.date}
+                                                </p>
+                                                <p class="event-venue">
+                                                    <i class="fas fa-map-marker-alt"></i>
+                                                    {archive.venue}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    </section>
+                ))}
+            </div>
+
+            <div class="back-to-top">
+                <a href="/" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>トップへ戻る</span>
+                </a>
+            </div>
+        </div>
+    </main>
+    <Footer />
+</Layout>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="" class="lightbox-img" id="lightboxImg">
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 年タブ切り替え
+    const tabs = document.querySelectorAll('.year-tab');
+    const sections = document.querySelectorAll('.archive-year-section');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const year = tab.dataset.year;
+
+            // タブのアクティブ状態を切り替え
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            // セクションの表示/非表示
+            if (year === 'all') {
+                sections.forEach(section => {
+                    section.style.display = 'block';
+                });
+            } else {
+                sections.forEach(section => {
+                    if (section.dataset.yearSection === year) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            }
+        });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeBtn = document.querySelector('.lightbox-close');
+
+    document.querySelectorAll('[data-lightbox]').forEach(img => {
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.dataset.lightbox;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+
+    closeBtn?.addEventListener('click', closeLightbox);
+    lightbox?.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+            closeLightbox();
+        }
+    });
+});
+</script>
+
+<style>
+    .archives-page {
+        min-height: 100vh;
+        padding: var(--spacing-lg) 0;
+    }
+
+    .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 var(--spacing-sm);
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+        padding-bottom: var(--spacing-lg);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        color: var(--color-text-muted);
+        font-size: 0.85rem;
+        margin-bottom: var(--spacing-md);
+        transition: var(--transition-fast);
+    }
+
+    .back-link:hover {
+        color: var(--color-neon-cyan);
+    }
+
+    .page-title {
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        margin-bottom: var(--spacing-xs);
+        background: linear-gradient(135deg, var(--color-neon-cyan), var(--color-neon-magenta));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .page-subtitle {
+        font-size: 0.9rem;
+        color: var(--color-text-muted);
+    }
+
+    /* 年タブ */
+    .year-tabs {
+        display: flex;
+        justify-content: center;
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-xl);
+        flex-wrap: wrap;
+    }
+
+    .year-tab {
+        background: transparent;
+        border: 1px solid var(--color-border);
+        color: var(--color-text-muted);
+        padding: 0.5rem 1.25rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: var(--transition-normal);
+    }
+
+    .year-tab:hover {
+        border-color: var(--color-neon-cyan);
+        color: var(--color-neon-cyan);
+    }
+
+    .year-tab.active {
+        background: var(--color-neon-cyan);
+        border-color: var(--color-neon-cyan);
+        color: var(--color-bg);
+        font-weight: 600;
+        box-shadow: 0 0 15px rgba(0, 255, 252, 0.3);
+    }
+
+    /* アーカイブセクション */
+    .archive-year-section {
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .year-title {
+        font-size: 1.3rem;
+        color: var(--color-neon-cyan);
+        margin-bottom: var(--spacing-md);
+        padding-left: var(--spacing-sm);
+        border-left: 3px solid var(--color-neon-cyan);
+    }
+
+    .event-card {
+        position: relative;
+    }
+
+    .event-card.pinned {
+        border-color: var(--color-neon-magenta);
+    }
+
+    .event-card.pinned:hover {
+        border-color: var(--color-neon-magenta);
+        box-shadow: 0 0 30px rgba(252, 0, 255, 0.15);
+    }
+
+    .pinned-badge {
+        position: absolute;
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+        background: var(--color-neon-magenta);
+        color: var(--color-bg);
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        z-index: 10;
+        box-shadow: 0 0 12px rgba(252, 0, 255, 0.6);
+    }
+
+    .back-to-top {
+        display: flex;
+        justify-content: center;
+        margin-top: var(--spacing-xl);
+        padding-top: var(--spacing-lg);
+        border-top: 1px solid var(--color-border);
+    }
+
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        background: transparent;
+        border: 1px solid var(--color-border);
+        color: var(--color-text);
+        padding: 0.75rem 1.5rem;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        transition: var(--transition-normal);
+    }
+
+    .back-btn:hover {
+        border-color: var(--color-neon-cyan);
+        color: var(--color-neon-cyan);
+        box-shadow: 0 0 15px rgba(0, 255, 252, 0.2);
+        text-shadow: none;
+    }
+
+    .back-btn i {
+        transition: transform var(--transition-fast);
+    }
+
+    .back-btn:hover i {
+        transform: translateX(-3px);
+    }
+
+    @media (min-width: 600px) {
+        .page-title {
+            font-size: 2.5rem;
+        }
+
+        .year-tabs {
+            gap: var(--spacing-sm);
+        }
+
+        .year-tab {
+            padding: 0.5rem 1.5rem;
+        }
+    }
+</style>

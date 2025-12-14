@@ -3,42 +3,101 @@ import eventsData from '../data/events.json';
 const { events } = eventsData;
 ---
 
-<section class="section next-section">
+<section class="section">
     <div class="container">
-        <h2 class="section-title">INFORMATION</h2>
+        <h2 class="section-title">EVENTS</h2>
 
-        <div class="slider-track">
+        <div class="events-grid">
             {events.map((event) => (
-                <div class="event-slide">
-                    <div class="next-event">
-                        <div class="next-event-info">
-                            <div class="next-event-title neon-text">{event.title}</div>
+                <article class="event-card">
+                    <div class="event-card-inner">
+                        <div class="event-images">
                             {event.images.map((img) => (
-                                <img src={`/images/${img}`} alt={event.title} class="next-event-image" />
+                                <img
+                                    src={`/images/${img}`}
+                                    alt={event.title}
+                                    class="event-image"
+                                    data-lightbox={`/images/${img}`}
+                                />
                             ))}
-                            <div class="next-event-date">{event.date}</div>
-                            <div class="next-event-venue">
-                                at {event.venueUrl ? (
-                                    <a href={event.venueUrl} target="_blank">{event.venue}</a>
-                                ) : (
-                                    event.venue
+                        </div>
+                        <div class="event-details">
+                            <h3 class="event-title">{event.title}</h3>
+                            <div class="event-meta">
+                                <p class="event-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    {event.date}
+                                </p>
+                                <p class="event-venue">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    {event.venueUrl ? (
+                                        <a href={event.venueUrl} target="_blank" rel="noopener">{event.venue}</a>
+                                    ) : (
+                                        event.venue
+                                    )}
+                                </p>
+                                {event.price && (
+                                    <p class="event-price">
+                                        <i class="fas fa-ticket-alt"></i>
+                                        {event.price}
+                                    </p>
                                 )}
                             </div>
-                            {event.price && (
-                                <div class="next-event-price">{event.price}</div>
+                            {event.note && (
+                                <p class="event-note">{event.note}</p>
                             )}
                             {event.ticketUrl && (
-                                <div class="next-event-price">
-                                    <a href={event.ticketUrl} target="_blank">Ticketはココから</a>
-                                </div>
-                            )}
-                            {event.note && (
-                                <div class="next-event-venue">{event.note}</div>
+                                <a href={event.ticketUrl} target="_blank" rel="noopener" class="event-ticket-btn">
+                                    <i class="fas fa-ticket-alt"></i>
+                                    チケット購入
+                                </a>
                             )}
                         </div>
                     </div>
-                </div>
+                </article>
             ))}
         </div>
     </div>
 </section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="" class="lightbox-img" id="lightboxImg">
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeBtn = document.querySelector('.lightbox-close');
+
+    // 画像クリックでライトボックス表示
+    document.querySelectorAll('[data-lightbox]').forEach(img => {
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.dataset.lightbox;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // 閉じる
+    function closeLightbox() {
+        lightbox.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+
+    closeBtn?.addEventListener('click', closeLightbox);
+    lightbox?.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // ESCキーで閉じる
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+            closeLightbox();
+        }
+    });
+});
+</script>

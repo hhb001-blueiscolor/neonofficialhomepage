@@ -17,6 +17,7 @@
       "photo": "dj_smyle.jpg",
       "x": "https://x.com/SMYLE_TheBlues",
       "instagram": null,
+      "youtube": "https://www.youtube.com/@SMYLENeoNbtlg",
       "externalLink": null,
       "externalLinkText": null,
       "qrCode": null,
@@ -65,6 +66,28 @@
       "externalLinkText": "J-ROCK PARTY MIX DRIVE2",
       "qrCode": "QR_abbatmix.png",
       "order": 6
+    },
+    {
+      "id": "kazz",
+      "name": "KAZZ",
+      "photo": "member_kazz.jpg",
+      "x": "https://x.com/kazudayo_17",
+      "instagram": "https://t.co/9DRudVrsPH",
+      "externalLink": null,
+      "externalLinkText": null,
+      "qrCode": null,
+      "order": 7
+    },
+    {
+      "id": "himepu",
+      "name": "ひめぷ",
+      "photo": "member_himepu.jpg",
+      "x": "https://x.com/h_nrappp",
+      "instagram": null,
+      "externalLink": null,
+      "externalLinkText": null,
+      "qrCode": null,
+      "order": 8
     }
   ],
   "slideshowImages": [

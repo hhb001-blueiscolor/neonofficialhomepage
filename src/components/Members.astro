@@ -7,42 +7,37 @@ const sortedMembers = [...members].sort((a, b) => a.order - b.order);
 <section class="section">
     <div class="container">
         <h2 class="section-title">MEMBERS</h2>
-        <div class="members">
-            <!-- スライドショー用のコンテナ -->
-            <div class="slideshow-container">
-                {slideshowImages.map((img, index) => (
-                    <div class="slideshow-slide">
-                        <img src={`/images/${img}`} alt={`NeoN Members Photo ${index + 1}`} class="members-photo" />
-                        <div class="glow-overlay"></div>
-                        <div class="glitch-overlay"></div>
-                    </div>
-                ))}
 
-                <!-- 前後のナビゲーションボタン（非表示） -->
-                <a class="slideshow-prev">&#10094;</a>
-                <a class="slideshow-next">&#10095;</a>
+        <div class="members-content">
+            <!-- スライドショー -->
+            <div class="slideshow-wrapper">
+                <div class="slideshow-container">
+                    {slideshowImages.map((img, index) => (
+                        <div class={`slideshow-slide ${index === 0 ? 'active' : ''}`}>
+                            <img src={`/images/${img}`} alt={`NeoN Members Photo ${index + 1}`} />
+                        </div>
+                    ))}
+                </div>
+                <div class="slideshow-dots">
+                    {slideshowImages.map((_, index) => (
+                        <span class={`slideshow-dot ${index === 0 ? 'active' : ''}`} data-index={index}></span>
+                    ))}
+                </div>
             </div>
 
-            <!-- ドットインジケーター -->
-            <div class="slideshow-dots">
-                {slideshowImages.map(() => (
-                    <span class="slideshow-dot"></span>
-                ))}
-            </div>
-
-            <!-- メンバーリスト -->
-            <div class="members-list" id="membersList">
+            <!-- メンバーグリッド -->
+            <div class="members-grid">
                 {sortedMembers.map((member) => (
-                    <a href="javascript:void(0);" class="member-name" data-mobile-order={member.order} data-dj-id={member.id}>
+                    <button class="member-btn" data-dj-id={member.id}>
                         {member.name}
-                    </a>
+                    </button>
                 ))}
             </div>
         </div>
     </div>
 </section>
 
-<!-- モーダルウィンドウ -->
+<!-- モーダル -->
 <div class="modal" id="djModal">
     <div class="modal-content">
         <span class="close-modal">&times;</span>
@@ -51,28 +46,28 @@ const sortedMembers = [...members].sort((a, b) => a.order - b.order);
                 <img src="" id="modalDjPhoto" alt="DJ Photo" class="dj-photo">
             </div>
             <h3 class="dj-name" id="modalDjName"></h3>
-            <p class="dj-bio" id="modalDjBio"></p>
 
-            <!-- URLリンク付きテキスト用の要素 -->
             <div class="dj-link-container" id="modalDjLinkContainer" style="display: none;">
-                <a href="" id="modalDjLink" target="_blank" class="dj-external-link">
+                <a href="" id="modalDjLink" target="_blank" rel="noopener" class="dj-external-link">
                     <span id="modalDjLinkText"></span>
                 </a>
             </div>
 
-            <!-- QRコード用の要素 -->
             <div class="dj-qrcode-container" id="modalDjQrContainer" style="display: none;">
                 <img src="" id="modalDjQrCode" alt="QR Code" class="dj-qrcode">
             </div>
 
             <div class="dj-social">
-                <a href="" id="modalDjX" target="_blank" class="social-link-modal">
-                    <svg class="social-icon-modal" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor">
+                <a href="" id="modalDjX" target="_blank" rel="noopener" class="social-link-modal">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
                         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
                     </svg>
                 </a>
-                <a href="" id="modalDjInsta" target="_blank" class="social-link-modal" style="display: none;">
-                    <i class="fab fa-instagram social-icon-modal"></i>
+                <a href="" id="modalDjInsta" target="_blank" rel="noopener" class="social-link-modal" style="display: none;">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" id="modalDjYoutube" target="_blank" rel="noopener" class="social-link-modal" style="display: none;">
+                    <i class="fab fa-youtube"></i>
                 </a>
             </div>
         </div>
@@ -80,161 +75,121 @@ const sortedMembers = [...members].sort((a, b) => a.order - b.order);
 </div>
 
 <script define:vars={{ members }}>
-    document.addEventListener('DOMContentLoaded', function() {
-        const djInfo = {};
-        members.forEach(m => {
-            djInfo[m.id] = {
-                name: m.name,
-                bio: "",
-                x: m.x,
-                instagram: m.instagram || "",
-                photo: `/images/${m.photo}`,
-                externalLink: m.externalLink || "",
-                externalLinkText: m.externalLinkText || "",
-                qrCode: m.qrCode ? `/images/${m.qrCode}` : ""
-            };
-        });
-
-        const modal = document.getElementById('djModal');
-        const closeModal = document.querySelector('.close-modal');
-
-        function openModal(djId) {
-            const dj = djInfo[djId];
-            if (dj) {
-                document.getElementById('modalDjName').textContent = dj.name;
-                document.getElementById('modalDjBio').innerHTML = dj.bio.replace(/\n/g, '<br>');
-                document.getElementById('modalDjX').href = dj.x;
-                document.getElementById('modalDjPhoto').src = dj.photo;
-                document.getElementById('modalDjPhoto').alt = dj.name;
-
-                if (dj.instagram && dj.instagram.trim() !== '') {
-                    document.getElementById('modalDjInsta').href = dj.instagram;
-                    document.getElementById('modalDjInsta').style.display = 'flex';
-                } else {
-                    document.getElementById('modalDjInsta').style.display = 'none';
-                }
-
-                const linkContainer = document.getElementById('modalDjLinkContainer');
-                const linkElement = document.getElementById('modalDjLink');
-                const linkText = document.getElementById('modalDjLinkText');
-
-                if (dj.externalLink && dj.externalLink.trim() !== '') {
-                    linkElement.href = dj.externalLink;
-                    linkText.textContent = dj.externalLinkText || dj.externalLink;
-                    linkContainer.style.display = 'block';
-                } else {
-                    linkContainer.style.display = 'none';
-                }
-
-                const qrContainer = document.getElementById('modalDjQrContainer');
-                const qrImage = document.getElementById('modalDjQrCode');
-
-                if (dj.qrCode && dj.qrCode.trim() !== '') {
-                    qrImage.src = dj.qrCode;
-                    qrImage.alt = `${dj.name} QR Code`;
-                    qrContainer.style.display = 'block';
-                } else {
-                    qrContainer.style.display = 'none';
-                }
-
-                modal.classList.add('show');
-                setTimeout(() => {
-                    modal.querySelector('.modal-content').style.opacity = 1;
-                    modal.querySelector('.modal-content').style.transform = 'translateY(0)';
-                }, 10);
-            }
-        }
-
-        function closeModalFunc() {
-            modal.querySelector('.modal-content').style.opacity = 0;
-            modal.querySelector('.modal-content').style.transform = 'translateY(-20px)';
-            setTimeout(() => {
-                modal.classList.remove('show');
-            }, 300);
-        }
-
-        document.querySelectorAll('.member-name').forEach(member => {
-            member.addEventListener('click', (e) => {
-                e.preventDefault();
-                const djId = member.getAttribute('data-dj-id');
-                openModal(djId);
-            });
-        });
-
-        if (closeModal) {
-            closeModal.addEventListener('click', closeModalFunc);
-        }
-
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModalFunc();
-            }
-        });
-
-        // メンバースライドショー
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.slideshow-slide');
-        const dots = document.querySelectorAll('.slideshow-dot');
-        let slideInterval;
-
-        if (slides.length > 0) {
-            showSlides();
-            startAutoSlide();
-
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', function() {
-                    stopAutoSlide();
-                    slideIndex = index;
-                    showSlides();
-                    startAutoSlide();
-                });
-            });
-
-            const slideshowContainer = document.querySelector('.slideshow-container');
-            if (slideshowContainer) {
-                slideshowContainer.addEventListener('mouseenter', stopAutoSlide);
-                slideshowContainer.addEventListener('mouseleave', startAutoSlide);
-            }
-        }
-
-        function showSlides() {
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-                slides[i].classList.remove('active', 'fade-zoom', 'transition');
-            }
-            for (let i = 0; i < dots.length; i++) {
-                dots[i].classList.remove("active");
-            }
-
-            if (slideIndex >= slides.length) slideIndex = 0;
-            if (slideIndex < 0) slideIndex = slides.length - 1;
-
-            slides[slideIndex].classList.add('fade-zoom');
-            if (Math.random() > 0.7) {
-                slides[slideIndex].classList.add('transition');
-            }
-            slides[slideIndex].style.display = "block";
-            setTimeout(() => {
-                slides[slideIndex].classList.add('active');
-            }, 50);
-
-            if (slideIndex < dots.length) {
-                dots[slideIndex].classList.add("active");
-            }
-        }
-
-        function startAutoSlide() {
-            stopAutoSlide();
-            slideInterval = setInterval(function() {
-                slideIndex++;
-                showSlides();
-            }, 5000);
-        }
-
-        function stopAutoSlide() {
-            if (slideInterval) {
-                clearInterval(slideInterval);
-            }
-        }
+document.addEventListener('DOMContentLoaded', function() {
+    // DJ情報マップ
+    const djInfo = {};
+    members.forEach(m => {
+        djInfo[m.id] = {
+            name: m.name,
+            x: m.x,
+            instagram: m.instagram || "",
+            youtube: m.youtube || "",
+            photo: `/images/${m.photo}`,
+            externalLink: m.externalLink || "",
+            externalLinkText: m.externalLinkText || "",
+            qrCode: m.qrCode ? `/images/${m.qrCode}` : ""
+        };
     });
+
+    // モーダル
+    const modal = document.getElementById('djModal');
+    const closeBtn = document.querySelector('.close-modal');
+
+    function openModal(djId) {
+        const dj = djInfo[djId];
+        if (!dj) return;
+
+        document.getElementById('modalDjName').textContent = dj.name;
+        document.getElementById('modalDjX').href = dj.x;
+        document.getElementById('modalDjPhoto').src = dj.photo;
+        document.getElementById('modalDjPhoto').alt = dj.name;
+
+        const instaEl = document.getElementById('modalDjInsta');
+        if (dj.instagram) {
+            instaEl.href = dj.instagram;
+            instaEl.style.display = 'flex';
+        } else {
+            instaEl.style.display = 'none';
+        }
+
+        const youtubeEl = document.getElementById('modalDjYoutube');
+        if (dj.youtube) {
+            youtubeEl.href = dj.youtube;
+            youtubeEl.style.display = 'flex';
+        } else {
+            youtubeEl.style.display = 'none';
+        }
+
+        const linkContainer = document.getElementById('modalDjLinkContainer');
+        if (dj.externalLink) {
+            document.getElementById('modalDjLink').href = dj.externalLink;
+            document.getElementById('modalDjLinkText').textContent = dj.externalLinkText || 'Link';
+            linkContainer.style.display = 'block';
+        } else {
+            linkContainer.style.display = 'none';
+        }
+
+        const qrContainer = document.getElementById('modalDjQrContainer');
+        if (dj.qrCode) {
+            document.getElementById('modalDjQrCode').src = dj.qrCode;
+            qrContainer.style.display = 'block';
+        } else {
+            qrContainer.style.display = 'none';
+        }
+
+        modal.classList.add('show');
+    }
+
+    function closeModal() {
+        modal.classList.remove('show');
+    }
+
+    document.querySelectorAll('.member-btn').forEach(btn => {
+        btn.addEventListener('click', () => openModal(btn.dataset.djId));
+    });
+
+    closeBtn?.addEventListener('click', closeModal);
+    modal?.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    // スライドショー
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slideshow-slide');
+    const dots = document.querySelectorAll('.slideshow-dot');
+    let interval;
+
+    function showSlide(index) {
+        slides.forEach((s, i) => s.classList.toggle('active', i === index));
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+
+    function nextSlide() {
+        slideIndex = (slideIndex + 1) % slides.length;
+        showSlide(slideIndex);
+    }
+
+    function startAuto() {
+        interval = setInterval(nextSlide, 5000);
+    }
+
+    function stopAuto() {
+        clearInterval(interval);
+    }
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            stopAuto();
+            slideIndex = i;
+            showSlide(slideIndex);
+            startAuto();
+        });
+    });
+
+    const wrapper = document.querySelector('.slideshow-wrapper');
+    wrapper?.addEventListener('mouseenter', stopAuto);
+    wrapper?.addEventListener('mouseleave', startAuto);
+
+    if (slides.length > 0) startAuto();
+});
 </script>
