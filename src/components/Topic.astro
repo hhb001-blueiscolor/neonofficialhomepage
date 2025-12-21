@@ -8,6 +8,21 @@
         <div class="events-grid">
             <article class="event-card">
                 <div class="event-card-inner">
+                    <a href="/app/ja" class="event-images topic-link">
+                        <img
+                            src="/images/neon-vj-topic.jpeg"
+                            alt="NeoN VJ"
+                            class="event-image"
+                        />
+                    </a>
+                    <div class="event-details">
+                        <p class="topic-date">2025.12.21</p>
+                        <h3 class="event-title">NeoN VJ 配信決定</h3>
+                    </div>
+                </div>
+            </article>
+            <article class="event-card">
+                <div class="event-card-inner">
                     <div class="event-images">
                         <img
                             src="/images/ANTHEM_1.jpeg"
@@ -38,6 +53,15 @@
 </section>
 
 <style>
+    .topic-link {
+        display: block;
+        transition: opacity 0.3s ease;
+    }
+
+    .topic-link:hover {
+        opacity: 0.8;
+    }
+
     .topic-date {
         font-size: 0.9rem;
         color: var(--color-text-muted);

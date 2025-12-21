@@ -1,0 +1,59 @@
+<!--
+  リンクセクション バックアップ
+  本番公開時に一時的に削除。リンク先が準備できたら復活させる。
+
+  必要な翻訳キー（各言語ファイルに存在）:
+  - t.links
+  - t.userGuide
+  - t.privacyPolicy
+  - t.terms
+  - t.support
+  - t.comingSoon
+
+  必要なCSS（AppLanding.astro内に存在）:
+  - .links-section
+  - .links-grid
+  - .link-card
+  - .coming-soon-link
+  - .link-overlay
+-->
+
+<!-- Links Section -->
+<section class="section links-section">
+    <div class="container">
+        <h2 class="section-title">{t.links}</h2>
+
+        <div class="links-grid">
+            <div class="link-card coming-soon-link">
+                <i class="fas fa-book"></i>
+                <span>{t.userGuide}</span>
+                <span class="link-overlay">{t.comingSoon}</span>
+            </div>
+            <div class="link-card coming-soon-link">
+                <i class="fas fa-shield-alt"></i>
+                <span>{t.privacyPolicy}</span>
+                <span class="link-overlay">{t.comingSoon}</span>
+            </div>
+            <div class="link-card coming-soon-link">
+                <i class="fas fa-file-contract"></i>
+                <span>{t.terms}</span>
+                <span class="link-overlay">{t.comingSoon}</span>
+            </div>
+            <div class="link-card coming-soon-link">
+                <i class="fas fa-envelope"></i>
+                <span>{t.support}</span>
+                <span class="link-overlay">{t.comingSoon}</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--
+  リンクが有効になったら、coming-soon-link クラスと link-overlay を削除し、
+  <a> タグでラップする:
+
+  <a href="/app/user-guide" class="link-card">
+      <i class="fas fa-book"></i>
+      <span>{t.userGuide}</span>
+  </a>
+-->
