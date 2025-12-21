@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AppLanding from '../../components/AppLanding.astro';
+
+const t = {
+    title: "NeoN VJ - 音楽認識VJアプリ",
+    tagline: "Music Recognition VJ App",
+    description: "NeoN VJ - リアルタイム音楽認識でイベントを彩るVJアプリ。Shazamの技術を活用し、再生中の楽曲情報を自動表示。",
+    heroDescription: "リアルタイム音楽認識で<br />イベントを彩るVJアプリ",
+    comingSoon: "Coming Soon",
+    price: "販売価格：未定",
+    priceNote: "（アプリ内課金なし）",
+    features: "機能",
+    feature1Title: "リアルタイム音楽認識",
+    feature1Desc: "Shazamの技術を活用し、再生中の楽曲を瞬時に認識。曲名・アーティスト名・アルバムアートを自動表示。",
+    feature2Title: "外部ディスプレイ出力",
+    feature2Desc: "HDMI接続でプロジェクターや大型モニターに出力。メイン画面とは独立した表示設定が可能。",
+    feature3Title: "カスタマイズ",
+    feature3Desc: "8種類のレイアウトプリセット。背景画像、イベントロゴ、DJ名表示など自由にカスタマイズ。",
+    feature4Title: "8言語対応",
+    feature4Desc: "日本語、英語、スペイン語、フランス語、韓国語、タイ語、簡体字・繁体字中国語に対応。",
+    useCases: "活用シーン",
+    useCase1Title: "DJイベント",
+    useCase1Desc: "今流れている曲をリアルタイムで表示",
+    useCase2Title: "音楽バー・クラブ",
+    useCase2Desc: "お客様への楽曲情報提供に",
+    useCase3Title: "レストラン・カフェ",
+    useCase3Desc: "BGMの楽曲名をさりげなく表示",
+    useCase4Title: "小売店・ショップ",
+    useCase4Desc: "店内BGMの楽曲情報を表示",
+    screenshots: "スクリーンショット",
+    screenshotsPlaceholder: "スクリーンショット準備中",
+    requirements: "動作環境",
+    req1: "iOS / iPadOS 15.6 以上",
+    req2: "iPhone / iPad 対応",
+    req3: "マイク使用（音楽認識用）",
+    req4: "インターネット接続（認識時）",
+    links: "リンク",
+    userGuide: "ユーザーガイド",
+    privacyPolicy: "プライバシーポリシー",
+    terms: "利用規約",
+    support: "サポート",
+    copyright: "© 2025 SMYLE | Produced by NeoN. All rights reserved.",
+    shazamNote: "NeoN VJは音楽認識にShazamの技術を使用しています。",
+    backToNeon: "NeoNに戻る",
+    selectLanguage: "言語を選択",
+    releaseDate: "リリース予定日：2026年初頭",
+};
+---
+
+<Layout title={t.title} description={t.description} ogImage="/images/app/neon-vj-ogp.png">
+    <AppLanding lang="ja" t={t} />
+</Layout>

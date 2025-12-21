@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AppLanding from '../../components/AppLanding.astro';
+
+const t = {
+    title: "NeoN VJ - Music Recognition VJ App",
+    tagline: "Music Recognition VJ App",
+    description: "NeoN VJ - Real-time music recognition VJ app for events. Automatically displays song information using Shazam technology.",
+    heroDescription: "Real-time music recognition<br />VJ app for your events",
+    comingSoon: "Coming Soon",
+    price: "Price: TBD",
+    priceNote: "(No in-app purchases)",
+    features: "FEATURES",
+    feature1Title: "Real-time Music Recognition",
+    feature1Desc: "Instantly recognizes playing music using Shazam technology. Automatically displays song title, artist name, and album artwork.",
+    feature2Title: "External Display Output",
+    feature2Desc: "Output to projectors and large monitors via HDMI. Configure display settings independently from the main screen.",
+    feature3Title: "Customization",
+    feature3Desc: "8 layout presets available. Customize background images, event logos, DJ names, and more.",
+    feature4Title: "8 Languages Supported",
+    feature4Desc: "Available in Japanese, English, Spanish, French, Korean, Thai, Simplified Chinese, and Traditional Chinese.",
+    useCases: "USE CASES",
+    useCase1Title: "DJ Events",
+    useCase1Desc: "Display currently playing tracks in real-time",
+    useCase2Title: "Music Bars & Clubs",
+    useCase2Desc: "Share song info with your guests",
+    useCase3Title: "Restaurants & Cafes",
+    useCase3Desc: "Subtly display BGM track names",
+    useCase4Title: "Retail Shops",
+    useCase4Desc: "Show in-store music information",
+    screenshots: "SCREENSHOTS",
+    screenshotsPlaceholder: "Screenshots coming soon",
+    requirements: "REQUIREMENTS",
+    req1: "iOS / iPadOS 15.6 or later",
+    req2: "iPhone / iPad compatible",
+    req3: "Microphone access (for music recognition)",
+    req4: "Internet connection (during recognition)",
+    links: "LINKS",
+    userGuide: "User Guide",
+    privacyPolicy: "Privacy Policy",
+    terms: "Terms of Use",
+    support: "Support",
+    copyright: "© 2025 SMYLE | Produced by NeoN. All rights reserved.",
+    shazamNote: "NeoN VJ uses Shazam technology for music recognition.",
+    backToNeon: "Back to NeoN",
+    selectLanguage: "Select Language",
+    releaseDate: "Expected Release: Early 2026",
+};
+---
+
+<Layout title={t.title} description={t.description} ogImage="/images/app/neon-vj-ogp.png">
+    <AppLanding lang="en" t={t} />
+</Layout>

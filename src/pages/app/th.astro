@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AppLanding from '../../components/AppLanding.astro';
+
+const t = {
+    title: "NeoN VJ - แอป VJ จดจำเพลง",
+    tagline: "Music Recognition VJ App",
+    description: "NeoN VJ - แอป VJ จดจำเพลงแบบเรียลไทม์สำหรับงานอีเวนต์ แสดงข้อมูลเพลงอัตโนมัติโดยใช้เทคโนโลยี Shazam",
+    heroDescription: "จดจำเพลงแบบเรียลไทม์<br />สำหรับงานอีเวนต์ของคุณ",
+    comingSoon: "เร็วๆ นี้",
+    price: "ราคา: ยังไม่กำหนด",
+    priceNote: "(ไม่มีการซื้อในแอป)",
+    features: "คุณสมบัติ",
+    feature1Title: "จดจำเพลงแบบเรียลไทม์",
+    feature1Desc: "จดจำเพลงที่กำลังเล่นทันทีโดยใช้เทคโนโลยี Shazam แสดงชื่อเพลง ชื่อศิลปิน และปกอัลบั้มอัตโนมัติ",
+    feature2Title: "ส่งออกหน้าจอภายนอก",
+    feature2Desc: "เชื่อมต่อโปรเจกเตอร์และจอมอนิเตอร์ขนาดใหญ่ผ่าน HDMI กำหนดค่าการแสดงผลแยกจากหน้าจอหลัก",
+    feature3Title: "ปรับแต่งได้",
+    feature3Desc: "มี 8 รูปแบบเลย์เอาต์ให้เลือก ปรับแต่งภาพพื้นหลัง โลโก้อีเวนต์ ชื่อ DJ และอื่นๆ ได้อย่างอิสระ",
+    feature4Title: "รองรับ 8 ภาษา",
+    feature4Desc: "รองรับภาษาญี่ปุ่น อังกฤษ สเปน ฝรั่งเศส เกาหลี ไทย จีนตัวย่อ และจีนตัวเต็ม",
+    useCases: "กรณีการใช้งาน",
+    useCase1Title: "งาน DJ",
+    useCase1Desc: "แสดงเพลงที่กำลังเล่นแบบเรียลไทม์",
+    useCase2Title: "บาร์ & คลับ",
+    useCase2Desc: "แชร์ข้อมูลเพลงกับลูกค้า",
+    useCase3Title: "ร้านอาหาร & คาเฟ่",
+    useCase3Desc: "แสดงชื่อเพลง BGM อย่างสุภาพ",
+    useCase4Title: "ร้านค้า",
+    useCase4Desc: "แสดงข้อมูลเพลงบรรยากาศ",
+    screenshots: "ภาพหน้าจอ",
+    screenshotsPlaceholder: "ภาพหน้าจอกำลังจะมาเร็วๆ นี้",
+    requirements: "ความต้องการระบบ",
+    req1: "iOS / iPadOS 15.6 ขึ้นไป",
+    req2: "รองรับ iPhone / iPad",
+    req3: "การเข้าถึงไมโครโฟน (สำหรับจดจำเพลง)",
+    req4: "การเชื่อมต่ออินเทอร์เน็ต (ระหว่างจดจำ)",
+    links: "ลิงก์",
+    userGuide: "คู่มือผู้ใช้",
+    privacyPolicy: "นโยบายความเป็นส่วนตัว",
+    terms: "ข้อกำหนดการใช้งาน",
+    support: "สนับสนุน",
+    copyright: "© 2025 SMYLE | Produced by NeoN. All rights reserved.",
+    shazamNote: "NeoN VJ ใช้เทคโนโลยี Shazam สำหรับการจดจำเพลง",
+    backToNeon: "กลับไป NeoN",
+    selectLanguage: "เลือกภาษา",
+    releaseDate: "คาดว่าจะเปิดตัว: ต้นปี 2026",
+};
+---
+
+<Layout title={t.title} description={t.description} ogImage="/images/app/neon-vj-ogp.png">
+    <AppLanding lang="th" t={t} />
+</Layout>

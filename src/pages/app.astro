@@ -1,0 +1,141 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+    title="NeoN VJ - Music Recognition VJ App"
+    description="NeoN VJ - Real-time music recognition VJ app for events, music bars, and restaurants."
+    ogImage="/images/app/neon-vj-ogp.png"
+>
+    <main class="language-selector">
+        <div class="container">
+            <img src="/images/app/app-icon.png" alt="NeoN VJ" class="app-icon" />
+            <h1 class="app-title">NeoN VJ</h1>
+            <p class="app-tagline">Music Recognition VJ App</p>
+
+            <h2 class="select-language">Select Language / 言語を選択</h2>
+
+            <div class="language-grid">
+                <a href="/app/ja" class="language-card">
+                    <span class="lang-flag">🇯🇵</span>
+                    <span class="lang-name">日本語</span>
+                </a>
+                <a href="/app/en" class="language-card">
+                    <span class="lang-flag">🇺🇸</span>
+                    <span class="lang-name">English</span>
+                </a>
+                <a href="/app/es" class="language-card">
+                    <span class="lang-flag">🇪🇸</span>
+                    <span class="lang-name">Español</span>
+                </a>
+                <a href="/app/fr" class="language-card">
+                    <span class="lang-flag">🇫🇷</span>
+                    <span class="lang-name">Français</span>
+                </a>
+                <a href="/app/ko" class="language-card">
+                    <span class="lang-flag">🇰🇷</span>
+                    <span class="lang-name">한국어</span>
+                </a>
+                <a href="/app/th" class="language-card">
+                    <span class="lang-flag">🇹🇭</span>
+                    <span class="lang-name">ไทย</span>
+                </a>
+                <a href="/app/zh-Hans" class="language-card">
+                    <span class="lang-flag">🇨🇳</span>
+                    <span class="lang-name">简体中文</span>
+                </a>
+                <a href="/app/zh-Hant" class="language-card">
+                    <span class="lang-flag">🇹🇼</span>
+                    <span class="lang-name">繁體中文</span>
+                </a>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    .language-selector {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: var(--spacing-xl) var(--spacing-md);
+        background: radial-gradient(ellipse at center, rgba(0, 255, 252, 0.08) 0%, transparent 60%);
+    }
+
+    .app-icon {
+        width: 100px;
+        height: 100px;
+        border-radius: 20px;
+        margin: 0 auto var(--spacing-md);
+        box-shadow: 0 0 40px rgba(0, 255, 252, 0.3);
+    }
+
+    .app-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--color-neon-cyan);
+        text-shadow: 0 0 20px rgba(0, 255, 252, 0.5);
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .app-tagline {
+        font-size: 1rem;
+        color: var(--color-text-muted);
+        letter-spacing: 0.2em;
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .select-language {
+        font-size: 1.2rem;
+        font-weight: 400;
+        margin-bottom: var(--spacing-lg);
+        color: var(--color-text);
+    }
+
+    .language-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-md);
+        max-width: 600px;
+        margin: 0 auto var(--spacing-xl);
+    }
+
+    .language-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-xs);
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: var(--spacing-md);
+        color: var(--color-text);
+        transition: var(--transition-normal);
+    }
+
+    .language-card:hover {
+        border-color: var(--color-neon-cyan);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 255, 252, 0.2);
+    }
+
+    .lang-flag {
+        font-size: 2rem;
+    }
+
+    .lang-name {
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+        .language-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .app-title {
+            font-size: 2rem;
+        }
+    }
+</style>

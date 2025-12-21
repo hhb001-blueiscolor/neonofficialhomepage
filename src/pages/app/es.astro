@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AppLanding from '../../components/AppLanding.astro';
+
+const t = {
+    title: "NeoN VJ - Aplicación VJ de Reconocimiento Musical",
+    tagline: "Music Recognition VJ App",
+    description: "NeoN VJ - Aplicación VJ de reconocimiento musical en tiempo real para eventos. Muestra automáticamente la información de las canciones usando tecnología Shazam.",
+    heroDescription: "Reconocimiento musical en tiempo real<br />para tus eventos",
+    comingSoon: "Próximamente",
+    price: "Precio: Por determinar",
+    priceNote: "(Sin compras dentro de la app)",
+    features: "CARACTERÍSTICAS",
+    feature1Title: "Reconocimiento Musical en Tiempo Real",
+    feature1Desc: "Reconoce instantáneamente la música usando tecnología Shazam. Muestra automáticamente título, artista y carátula del álbum.",
+    feature2Title: "Salida a Pantalla Externa",
+    feature2Desc: "Conecta a proyectores y monitores grandes vía HDMI. Configura la pantalla independientemente de la principal.",
+    feature3Title: "Personalización",
+    feature3Desc: "8 diseños predefinidos disponibles. Personaliza imágenes de fondo, logos de eventos, nombres de DJ y más.",
+    feature4Title: "8 Idiomas Disponibles",
+    feature4Desc: "Disponible en japonés, inglés, español, francés, coreano, tailandés, chino simplificado y chino tradicional.",
+    useCases: "CASOS DE USO",
+    useCase1Title: "Eventos de DJ",
+    useCase1Desc: "Muestra las canciones en tiempo real",
+    useCase2Title: "Bares y Clubs",
+    useCase2Desc: "Comparte información musical con tus clientes",
+    useCase3Title: "Restaurantes y Cafés",
+    useCase3Desc: "Muestra discretamente los nombres de las canciones",
+    useCase4Title: "Tiendas",
+    useCase4Desc: "Muestra la información de la música ambiental",
+    screenshots: "CAPTURAS DE PANTALLA",
+    screenshotsPlaceholder: "Capturas de pantalla próximamente",
+    requirements: "REQUISITOS",
+    req1: "iOS / iPadOS 15.6 o posterior",
+    req2: "Compatible con iPhone / iPad",
+    req3: "Acceso al micrófono (para reconocimiento)",
+    req4: "Conexión a Internet (durante el reconocimiento)",
+    links: "ENLACES",
+    userGuide: "Guía de Usuario",
+    privacyPolicy: "Política de Privacidad",
+    terms: "Términos de Uso",
+    support: "Soporte",
+    copyright: "© 2025 SMYLE | Produced by NeoN. All rights reserved.",
+    shazamNote: "NeoN VJ utiliza tecnología Shazam para el reconocimiento musical.",
+    backToNeon: "Volver a NeoN",
+    selectLanguage: "Seleccionar Idioma",
+    releaseDate: "Lanzamiento previsto: Principios de 2026",
+};
+---
+
+<Layout title={t.title} description={t.description} ogImage="/images/app/neon-vj-ogp.png">
+    <AppLanding lang="es" t={t} />
+</Layout>

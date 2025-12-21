@@ -1,0 +1,786 @@
+---
+interface Props {
+    lang: string;
+    t: {
+        title: string;
+        tagline: string;
+        description: string;
+        heroDescription: string;
+        comingSoon: string;
+        price: string;
+        priceNote: string;
+        features: string;
+        feature1Title: string;
+        feature1Desc: string;
+        feature2Title: string;
+        feature2Desc: string;
+        feature3Title: string;
+        feature3Desc: string;
+        feature4Title: string;
+        feature4Desc: string;
+        useCases: string;
+        useCase1Title: string;
+        useCase1Desc: string;
+        useCase2Title: string;
+        useCase2Desc: string;
+        useCase3Title: string;
+        useCase3Desc: string;
+        useCase4Title: string;
+        useCase4Desc: string;
+        screenshots: string;
+        screenshotsPlaceholder: string;
+        requirements: string;
+        req1: string;
+        req2: string;
+        req3: string;
+        req4: string;
+        links: string;
+        userGuide: string;
+        privacyPolicy: string;
+        terms: string;
+        support: string;
+        copyright: string;
+        shazamNote: string;
+        backToNeon: string;
+        selectLanguage: string;
+        releaseDate: string;
+    };
+}
+
+const { lang, t } = Astro.props;
+
+// スクリーンショット画像リスト
+const screenshotImages = [
+    'screenshot-01.png',
+    'screenshot-02.png',
+    'screenshot-03.png',
+    'screenshot-04.png',
+    'screenshot-05.png',
+];
+
+const languages = [
+    { code: 'ja', flag: '🇯🇵', name: '日本語' },
+    { code: 'en', flag: '🇺🇸', name: 'English' },
+    { code: 'es', flag: '🇪🇸', name: 'Español' },
+    { code: 'fr', flag: '🇫🇷', name: 'Français' },
+    { code: 'ko', flag: '🇰🇷', name: '한국어' },
+    { code: 'th', flag: '🇹🇭', name: 'ไทย' },
+    { code: 'zh-Hans', flag: '🇨🇳', name: '简体中文' },
+    { code: 'zh-Hant', flag: '🇹🇼', name: '繁體中文' },
+];
+---
+
+<header class="app-header">
+    <div class="header-spacer"></div>
+    <div class="lang-switcher">
+        <button class="lang-current" id="langToggle">
+            {languages.find(l => l.code === lang)?.flag} <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+            {languages.map(l => (
+                <a href={`/app/${l.code}`} class={l.code === lang ? 'active' : ''}>
+                    {l.flag} {l.name}
+                </a>
+            ))}
+        </div>
+    </div>
+</header>
+
+<main class="app-landing">
+    <!-- Hero Section -->
+    <section class="app-hero">
+        <div class="container">
+            <img src="/images/app/app-icon.png" alt="NeoN VJ" class="app-icon" />
+            <h1 class="app-title">NeoN VJ</h1>
+            <p class="app-tagline">{t.tagline}</p>
+            <p class="app-description" set:html={t.heroDescription}></p>
+
+            <!-- App Store Badge (Placeholder) -->
+            <div class="app-store-badge">
+                <a href="#" class="badge-link coming-soon">
+                    <img src="/images/app/app-store-badge.svg" alt="Download on the App Store" />
+                    <span class="badge-overlay">{t.comingSoon}</span>
+                </a>
+            </div>
+
+            <p class="app-release-date">{t.releaseDate}</p>
+            <p class="app-price">{t.price} <span class="price-note">{t.priceNote}</span></p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features-section">
+        <div class="container">
+            <h2 class="section-title">{t.features}</h2>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>{t.feature1Title}</h3>
+                    <p>{t.feature1Desc}</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <h3>{t.feature2Title}</h3>
+                    <p>{t.feature2Desc}</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>{t.feature3Title}</h3>
+                    <p>{t.feature3Desc}</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>{t.feature4Title}</h3>
+                    <p>{t.feature4Desc}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="section usecases-section">
+        <div class="container">
+            <h2 class="section-title">{t.useCases}</h2>
+
+            <div class="usecases-grid">
+                <div class="usecase-card">
+                    <i class="fas fa-compact-disc"></i>
+                    <h3>{t.useCase1Title}</h3>
+                    <p>{t.useCase1Desc}</p>
+                </div>
+                <div class="usecase-card">
+                    <i class="fas fa-glass-martini-alt"></i>
+                    <h3>{t.useCase2Title}</h3>
+                    <p>{t.useCase2Desc}</p>
+                </div>
+                <div class="usecase-card">
+                    <i class="fas fa-utensils"></i>
+                    <h3>{t.useCase3Title}</h3>
+                    <p>{t.useCase3Desc}</p>
+                </div>
+                <div class="usecase-card">
+                    <i class="fas fa-store"></i>
+                    <h3>{t.useCase4Title}</h3>
+                    <p>{t.useCase4Desc}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section class="section screenshots-section">
+        <div class="container">
+            <h2 class="section-title">{t.screenshots}</h2>
+
+            <div class="screenshots-slideshow-wrapper">
+                <div class="screenshots-slideshow-container">
+                    {screenshotImages.map((img, index) => (
+                        <div class={`screenshots-slide ${index === 0 ? 'active' : ''}`}>
+                            <img src={`/images/app/${img}`} alt={`NeoN VJ Screenshot ${index + 1}`} />
+                        </div>
+                    ))}
+                </div>
+                <div class="screenshots-dots">
+                    {screenshotImages.map((_, index) => (
+                        <span class={`screenshots-dot ${index === 0 ? 'active' : ''}`} data-index={index}></span>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requirements Section -->
+    <section class="section requirements-section">
+        <div class="container">
+            <h2 class="section-title">{t.requirements}</h2>
+
+            <div class="requirements-card">
+                <ul class="requirements-list">
+                    <li><i class="fab fa-apple"></i> {t.req1}</li>
+                    <li><i class="fas fa-tablet-alt"></i> {t.req2}</li>
+                    <li><i class="fas fa-microphone"></i> {t.req3}</li>
+                    <li><i class="fas fa-wifi"></i> {t.req4}</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Links Section -->
+    <section class="section links-section">
+        <div class="container">
+            <h2 class="section-title">{t.links}</h2>
+
+            <div class="links-grid">
+                <a href={`https://neondjneon.com/manual-${lang}.html`} class="link-card" target="_blank">
+                    <i class="fas fa-book"></i>
+                    <span>{t.userGuide}</span>
+                </a>
+                <div class="link-card coming-soon-link">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>{t.privacyPolicy}</span>
+                    <span class="link-overlay">{t.comingSoon}</span>
+                </div>
+                <div class="link-card coming-soon-link">
+                    <i class="fas fa-file-contract"></i>
+                    <span>{t.terms}</span>
+                    <span class="link-overlay">{t.comingSoon}</span>
+                </div>
+                <div class="link-card coming-soon-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>{t.support}</span>
+                    <span class="link-overlay">{t.comingSoon}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="app-footer">
+    <div class="container">
+        <p>{t.copyright}</p>
+        <p class="footer-note">{t.shazamNote}</p>
+    </div>
+</footer>
+
+<script>
+    const langToggle = document.getElementById('langToggle');
+    const langDropdown = document.getElementById('langDropdown');
+
+    langToggle?.addEventListener('click', () => {
+        langDropdown?.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!langToggle?.contains(e.target as Node) && !langDropdown?.contains(e.target as Node)) {
+            langDropdown?.classList.remove('show');
+        }
+    });
+
+    // スクリーンショットスライドショー
+    let screenshotIndex = 0;
+    const screenshotSlides = document.querySelectorAll('.screenshots-slide');
+    const screenshotDots = document.querySelectorAll('.screenshots-dot');
+    let screenshotInterval: ReturnType<typeof setInterval>;
+
+    function showScreenshot(index: number) {
+        screenshotSlides.forEach((s, i) => s.classList.toggle('active', i === index));
+        screenshotDots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+
+    function nextScreenshot() {
+        screenshotIndex = (screenshotIndex + 1) % screenshotSlides.length;
+        showScreenshot(screenshotIndex);
+    }
+
+    function startScreenshotAuto() {
+        screenshotInterval = setInterval(nextScreenshot, 5000);
+    }
+
+    function stopScreenshotAuto() {
+        clearInterval(screenshotInterval);
+    }
+
+    screenshotDots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            stopScreenshotAuto();
+            screenshotIndex = i;
+            showScreenshot(screenshotIndex);
+            startScreenshotAuto();
+        });
+    });
+
+    const screenshotWrapper = document.querySelector('.screenshots-slideshow-wrapper');
+    screenshotWrapper?.addEventListener('mouseenter', stopScreenshotAuto);
+    screenshotWrapper?.addEventListener('mouseleave', startScreenshotAuto);
+
+    if (screenshotSlides.length > 0) startScreenshotAuto();
+</script>
+
+<style>
+    /* App Header */
+    .app-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: var(--spacing-sm) var(--spacing-md);
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header-spacer {
+        flex: 1;
+    }
+
+    /* Language Switcher */
+    .lang-switcher {
+        position: relative;
+    }
+
+    .lang-current {
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        padding: 0.5rem 0.75rem;
+        color: var(--color-text);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .lang-current:hover {
+        border-color: var(--color-neon-cyan);
+    }
+
+    .lang-current i {
+        font-size: 0.7rem;
+    }
+
+    .lang-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: 0.5rem;
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        min-width: 150px;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .lang-dropdown.show {
+        display: flex;
+    }
+
+    .lang-dropdown a {
+        padding: 0.75rem 1rem;
+        color: var(--color-text);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: var(--transition-fast);
+    }
+
+    .lang-dropdown a:hover {
+        background: rgba(0, 255, 252, 0.1);
+    }
+
+    .lang-dropdown a.active {
+        background: rgba(0, 255, 252, 0.2);
+        color: var(--color-neon-cyan);
+    }
+
+    /* App Hero */
+    .app-hero {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: calc(60px + var(--spacing-xl)) var(--spacing-md) var(--spacing-lg);
+        background: radial-gradient(ellipse at center, rgba(0, 255, 252, 0.08) 0%, transparent 60%);
+    }
+
+    .app-icon {
+        width: 120px;
+        height: 120px;
+        border-radius: 24px;
+        margin: 0 auto var(--spacing-md);
+        box-shadow: 0 0 40px rgba(0, 255, 252, 0.3);
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .app-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--color-neon-cyan);
+        text-shadow: 0 0 20px rgba(0, 255, 252, 0.5);
+        margin-bottom: var(--spacing-xs);
+        animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+
+    .app-tagline {
+        font-size: 1rem;
+        color: var(--color-text-muted);
+        letter-spacing: 0.2em;
+        margin-bottom: var(--spacing-md);
+        animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .app-description {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        margin-bottom: var(--spacing-lg);
+        animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+
+    .app-store-badge {
+        margin-bottom: var(--spacing-md);
+        animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    .badge-link {
+        display: inline-block;
+        position: relative;
+    }
+
+    .badge-link img {
+        height: 50px;
+        filter: grayscale(0.3);
+        transition: var(--transition-normal);
+    }
+
+    .badge-link:hover img {
+        filter: grayscale(0);
+    }
+
+    .badge-link.coming-soon {
+        pointer-events: none;
+    }
+
+    .badge-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.8);
+        color: var(--color-neon-cyan);
+        padding: 0.3rem 0.8rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+    }
+
+    .app-release-date {
+        font-size: 1rem;
+        color: var(--color-neon-cyan);
+        margin-bottom: var(--spacing-xs);
+        animation: fadeInUp 0.8s ease-out 0.5s both;
+    }
+
+    .app-price {
+        font-size: 1.1rem;
+        color: var(--color-text);
+        animation: fadeInUp 0.8s ease-out 0.55s both;
+    }
+
+    .price-note {
+        font-size: 0.85rem;
+        color: var(--color-neon-magenta);
+    }
+
+    /* Features Section */
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-md);
+    }
+
+    .feature-card {
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: var(--spacing-lg);
+        text-align: center;
+        transition: var(--transition-normal);
+    }
+
+    .feature-card:hover {
+        border-color: var(--color-neon-cyan);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 255, 252, 0.15);
+    }
+
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto var(--spacing-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--color-neon-cyan);
+        background: rgba(0, 255, 252, 0.1);
+        border-radius: 50%;
+    }
+
+    .feature-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: var(--spacing-sm);
+        color: var(--color-text);
+    }
+
+    .feature-card p {
+        font-size: 0.9rem;
+        color: var(--color-text-muted);
+        line-height: 1.6;
+    }
+
+    /* Use Cases Section */
+    .usecases-section {
+        background: var(--color-bg-secondary);
+    }
+
+    .usecases-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-md);
+    }
+
+    .usecase-card {
+        text-align: center;
+        padding: var(--spacing-md);
+    }
+
+    .usecase-card i {
+        font-size: 2rem;
+        color: var(--color-neon-magenta);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .usecase-card h3 {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .usecase-card p {
+        font-size: 0.85rem;
+        color: var(--color-text-muted);
+    }
+
+    /* Screenshots Slideshow */
+    .screenshots-slideshow-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .screenshots-slideshow-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 66.67%;
+        background: var(--color-bg-secondary);
+    }
+
+    .screenshots-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .screenshots-slide.active {
+        opacity: 1;
+    }
+
+    .screenshots-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .screenshots-dots {
+        display: flex;
+        justify-content: center;
+        gap: var(--spacing-xs);
+        padding: var(--spacing-sm);
+        background: var(--color-bg-card);
+    }
+
+    .screenshots-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--color-border);
+        cursor: pointer;
+        transition: var(--transition-fast);
+    }
+
+    .screenshots-dot:hover {
+        background: var(--color-neon-magenta);
+    }
+
+    .screenshots-dot.active {
+        background: var(--color-neon-cyan);
+        box-shadow: 0 0 10px var(--color-neon-cyan);
+    }
+
+    /* Requirements Section */
+    .requirements-section {
+        background: var(--color-bg-secondary);
+    }
+
+    .requirements-card {
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: var(--spacing-lg);
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .requirements-list {
+        list-style: none;
+    }
+
+    .requirements-list li {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm) 0;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .requirements-list li:last-child {
+        border-bottom: none;
+    }
+
+    .requirements-list i {
+        width: 24px;
+        color: var(--color-neon-cyan);
+        text-align: center;
+    }
+
+    /* Links Section */
+    .links-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--spacing-md);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .link-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-xs);
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: var(--spacing-md);
+        color: var(--color-text);
+        transition: var(--transition-normal);
+    }
+
+    .link-card:hover {
+        border-color: var(--color-neon-cyan);
+        color: var(--color-neon-cyan);
+        transform: translateY(-3px);
+    }
+
+    .link-card i {
+        font-size: 1.5rem;
+    }
+
+    .link-card span {
+        font-size: 0.85rem;
+    }
+
+    /* Coming Soon Link Card */
+    .link-card.coming-soon-link {
+        position: relative;
+        pointer-events: none;
+        opacity: 0.6;
+    }
+
+    .link-card.coming-soon-link:hover {
+        transform: none;
+        border-color: var(--color-border);
+        color: var(--color-text);
+    }
+
+    .link-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.85);
+        color: var(--color-neon-cyan);
+        padding: 0.3rem 0.6rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        white-space: nowrap;
+    }
+
+    /* App Footer */
+    .app-footer {
+        text-align: center;
+        padding: var(--spacing-lg);
+        border-top: 1px solid var(--color-border);
+        background: var(--color-bg);
+    }
+
+    .app-footer p {
+        font-size: 0.8rem;
+        color: var(--color-text-muted);
+    }
+
+    .footer-note {
+        margin-top: var(--spacing-xs);
+        font-size: 0.75rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+        .app-title {
+            font-size: 2rem;
+        }
+
+        .app-description {
+            font-size: 1rem;
+        }
+
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .usecases-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .links-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>

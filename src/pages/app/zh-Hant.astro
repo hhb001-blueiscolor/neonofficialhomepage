@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AppLanding from '../../components/AppLanding.astro';
+
+const t = {
+    title: "NeoN VJ - 音樂辨識VJ應用程式",
+    tagline: "Music Recognition VJ App",
+    description: "NeoN VJ - 用於活動的即時音樂辨識VJ應用程式。使用Shazam技術自動顯示歌曲資訊。",
+    heroDescription: "即時音樂辨識<br />為您的活動增添色彩",
+    comingSoon: "即將推出",
+    price: "售價：待定",
+    priceNote: "（無應用程式內購買）",
+    features: "功能",
+    feature1Title: "即時音樂辨識",
+    feature1Desc: "使用Shazam技術即時辨識正在播放的音樂。自動顯示歌曲名稱、藝術家名稱和專輯封面。",
+    feature2Title: "外部顯示器輸出",
+    feature2Desc: "透過HDMI連接投影機和大型顯示器。可獨立於主螢幕設定顯示選項。",
+    feature3Title: "自訂",
+    feature3Desc: "提供8種版面配置預設。可自由自訂背景圖片、活動標誌、DJ名稱等。",
+    feature4Title: "支援8種語言",
+    feature4Desc: "支援日語、英語、西班牙語、法語、韓語、泰語、簡體中文和繁體中文。",
+    useCases: "使用場景",
+    useCase1Title: "DJ活動",
+    useCase1Desc: "即時顯示正在播放的曲目",
+    useCase2Title: "音樂酒吧 & 俱樂部",
+    useCase2Desc: "與客人分享歌曲資訊",
+    useCase3Title: "餐廳 & 咖啡館",
+    useCase3Desc: "低調顯示背景音樂曲名",
+    useCase4Title: "零售店",
+    useCase4Desc: "顯示店內音樂資訊",
+    screenshots: "螢幕截圖",
+    screenshotsPlaceholder: "螢幕截圖即將推出",
+    requirements: "系統需求",
+    req1: "iOS / iPadOS 15.6 或更新版本",
+    req2: "相容 iPhone / iPad",
+    req3: "麥克風權限（用於音樂辨識）",
+    req4: "網路連線（辨識時需要）",
+    links: "連結",
+    userGuide: "使用者指南",
+    privacyPolicy: "隱私權政策",
+    terms: "使用條款",
+    support: "支援",
+    copyright: "© 2025 SMYLE | Produced by NeoN. All rights reserved.",
+    shazamNote: "NeoN VJ 使用 Shazam 技術進行音樂辨識。",
+    backToNeon: "返回 NeoN",
+    selectLanguage: "選擇語言",
+    releaseDate: "預計發布：2026年初",
+};
+---
+
+<Layout title={t.title} description={t.description} ogImage="/images/app/neon-vj-ogp.png">
+    <AppLanding lang="zh-Hant" t={t} />
+</Layout>
