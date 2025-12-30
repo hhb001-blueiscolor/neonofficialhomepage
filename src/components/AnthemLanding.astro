@@ -1,0 +1,398 @@
+---
+/**
+ * NeoN ANTHEM Project Landing Page Component
+ * 白背景のシンプルなランディングページ
+ * 将来的にVOL.2以降や配信リンクを追加可能な構成
+ */
+---
+
+<div class="anthem-page">
+  <!-- Header with Back Button -->
+  <header class="anthem-header">
+    <a href="/" class="back-btn">
+      <i class="fas fa-arrow-left"></i>
+      <span>NeoN HOME</span>
+    </a>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="anthem-hero">
+    <img src="/images/anthem-logo.jpg" alt="NeoN ANTHEM PROJECT" class="anthem-logo" />
+  </section>
+
+  <!-- Concept Section -->
+  <section class="anthem-concept">
+    <p class="concept-lead">「NeoNに遊びに来ると曲ができる」</p>
+    <div class="concept-text">
+      <p>嘘じゃないです。<br>NeoNで生まれた収益でアーティストに楽曲制作を依頼します。</p>
+      <p>とびっきりの<span class="highlight">"アンセム"</span>を注文しました。</p>
+      <p>このアンセムはNeoN DJだけのものではありません。<br>全国のROCK DJ、そして音楽を愛するすべてのリスナーのものです。</p>
+    </div>
+  </section>
+
+  <!-- VOL.1 Section -->
+  <section class="anthem-volume" id="vol1">
+    <h2 class="volume-title">第一弾</h2>
+    <div class="volume-content">
+      <img src="/images/anthem-vol1.jpg" alt="ANTHEM VOL.1" class="volume-image" />
+      <div class="volume-artists">
+        <h3 class="artists-label">参加アーティスト</h3>
+        <ul class="artists-list">
+          <li>ビレッジマンズストア</li>
+          <li>空きっ腹に酒</li>
+        </ul>
+      </div>
+      <!-- 配信リンク (リリース後に表示) -->
+      <div class="streaming-links" id="vol1-streaming" style="display: none;">
+        <h3 class="streaming-label">配信先</h3>
+        <div class="streaming-buttons">
+          <!-- リンクは後から追加 -->
+          <a href="#" class="streaming-btn spotify">
+            <i class="fab fa-spotify"></i>
+            <span>Spotify</span>
+          </a>
+          <a href="#" class="streaming-btn apple">
+            <i class="fab fa-apple"></i>
+            <span>Apple Music</span>
+          </a>
+          <a href="#" class="streaming-btn youtube">
+            <i class="fab fa-youtube"></i>
+            <span>YouTube Music</span>
+          </a>
+        </div>
+      </div>
+      <!-- リリース前の表示 -->
+      <div class="coming-soon-badge">
+        <span>Coming Soon</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Future Volumes Placeholder -->
+  <!--
+  <section class="anthem-volume" id="vol2">
+    <h2 class="volume-title">VOL.2</h2>
+    <div class="volume-content">
+      <img src="/images/anthem-vol2.jpg" alt="ANTHEM VOL.2" class="volume-image" />
+      <div class="volume-artists">
+        <h3 class="artists-label">参加アーティスト</h3>
+        <ul class="artists-list">
+          <li>アーティスト名</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  -->
+
+  <!-- Message Section -->
+  <section class="anthem-message">
+    <div class="message-content">
+      <p>当プロジェクトは今後も継続していきます。</p>
+      <p>ROCK DJシーン発のアンセムが生まれ続けます。<br>第二弾、第三弾とみんなで紡いでいきましょう。</p>
+      <p class="message-highlight">流行りは待つものではなく作るもの。<br>やってみよう。</p>
+      <p class="message-signature">NeoN</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="anthem-footer">
+    <a href="/" class="footer-home-btn">
+      <i class="fas fa-home"></i>
+      <span>NeoN HOME に戻る</span>
+    </a>
+    <p class="copyright">&copy; 2025 NeoN. All rights reserved.</p>
+  </footer>
+</div>
+
+<style>
+  /* ========================================
+     Anthem Landing Page Styles
+     白背景バージョン
+     ======================================== */
+
+  .anthem-page {
+    background: #fff;
+    color: #1a1a1a;
+    min-height: 100vh;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* Header */
+  .anthem-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 1px solid #eee;
+  }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .back-btn:hover {
+    color: #fc00ff;
+    text-shadow: none;
+  }
+
+  /* Hero */
+  .anthem-hero {
+    padding: 5rem 1.5rem 1rem;
+    text-align: center;
+    background: linear-gradient(180deg, #f8f8f8 0%, #fff 100%);
+  }
+
+  .anthem-logo {
+    max-width: 400px;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 8px;
+  }
+
+  /* Concept Section */
+  .anthem-concept {
+    padding: 1.5rem 1.5rem 3rem;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .concept-lead {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #1a1a1a;
+    letter-spacing: 0.05em;
+  }
+
+  .concept-text {
+    font-size: 1rem;
+    line-height: 2;
+    color: #333;
+  }
+
+  .concept-text p {
+    margin-bottom: 1.5rem;
+  }
+
+  .concept-text .highlight {
+    color: #fc00ff;
+    font-weight: 700;
+  }
+
+  /* Volume Section */
+  .anthem-volume {
+    padding: 3rem 1.5rem;
+    background: #f8f8f8;
+  }
+
+  .volume-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    margin-bottom: 2rem;
+    color: #1a1a1a;
+  }
+
+  .volume-content {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .volume-image {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+
+  .artists-label,
+  .streaming-label {
+    font-size: 0.85rem;
+    color: #888;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .artists-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+  }
+
+  .artists-list li {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+  }
+
+  /* Streaming Links */
+  .streaming-links {
+    margin-top: 2rem;
+  }
+
+  .streaming-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .streaming-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .streaming-btn.spotify {
+    background: #1DB954;
+    color: #fff;
+  }
+
+  .streaming-btn.apple {
+    background: #FA233B;
+    color: #fff;
+  }
+
+  .streaming-btn.youtube {
+    background: #FF0000;
+    color: #fff;
+  }
+
+  .streaming-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    text-shadow: none;
+  }
+
+  /* Coming Soon Badge */
+  .coming-soon-badge {
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    background: linear-gradient(135deg, #00fffc, #fc00ff);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    border-radius: 30px;
+    margin-top: 1rem;
+  }
+
+  /* Message Section */
+  .anthem-message {
+    padding: 4rem 1.5rem;
+    background: #fff;
+  }
+
+  .message-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 2;
+    color: #333;
+  }
+
+  .message-content p {
+    margin-bottom: 1.5rem;
+  }
+
+  .message-highlight {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-top: 2rem;
+  }
+
+  .message-signature {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-top: 2rem;
+    letter-spacing: 0.2em;
+  }
+
+  /* Footer */
+  .anthem-footer {
+    padding: 3rem 1.5rem;
+    text-align: center;
+    background: #1a1a1a;
+    color: #fff;
+  }
+
+  .footer-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    transition: color 0.3s ease;
+  }
+
+  .footer-home-btn:hover {
+    color: #fff;
+    text-shadow: none;
+  }
+
+  .copyright {
+    font-size: 0.8rem;
+    color: #666;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .anthem-hero {
+      padding: 5rem 1rem 2rem;
+    }
+
+    .anthem-logo {
+      max-width: 300px;
+    }
+
+    .concept-lead {
+      font-size: 1.2rem;
+    }
+
+    .volume-title {
+      font-size: 1.5rem;
+    }
+
+    .artists-list li {
+      font-size: 1rem;
+    }
+
+    .streaming-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .streaming-btn {
+      width: 100%;
+      max-width: 250px;
+      justify-content: center;
+    }
+  }
+</style>
