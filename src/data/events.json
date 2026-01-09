@@ -2,12 +2,12 @@
   "events": [
     {
       "id": 1,
-      "title": "NeoN presents スナック夜煌-NeoN-",
-      "date": "2026.01.06(Tue) 20:00",
-      "venue": "下北沢CREAM 3F",
+      "title": "NeoN",
+      "date": "2026.02.03(Tue)",
+      "venue": "下北沢CREAM",
       "venueUrl": "https://maps.app.goo.gl/kWn7MfTLiCtdhdjm6",
-      "price": "¥500",
-      "images": ["snack-neon-202601.jpeg"],
+      "price": null,
+      "images": ["neon-202602.jpg"],
       "ticketUrl": null,
       "note": null
     }
