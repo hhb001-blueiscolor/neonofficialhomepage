@@ -3,11 +3,22 @@
     {
       "id": 1,
       "title": "NeoN",
-      "date": "2026.02.03(Tue)",
+      "date": "2026.03.03(Tue)",
       "venue": "下北沢CREAM",
       "venueUrl": "https://maps.app.goo.gl/kWn7MfTLiCtdhdjm6",
       "price": null,
-      "images": ["neon-202602.jpg"],
+      "images": ["now_printing.svg"],
+      "ticketUrl": null,
+      "note": null
+    },
+    {
+      "id": 2,
+      "title": "NeoN VJ App Release Party -WHAT'S TRACK-",
+      "date": "2026.03.21(Sat)",
+      "venue": "下北沢CREAM",
+      "venueUrl": "https://maps.app.goo.gl/kWn7MfTLiCtdhdjm6",
+      "price": null,
+      "images": ["neon-260321.jpg"],
       "ticketUrl": null,
       "note": null
     }

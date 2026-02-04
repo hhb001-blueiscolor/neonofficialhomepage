@@ -1,6 +1,16 @@
 {
   "archives": [
     {
+      "id": -1,
+      "year": "2026",
+      "title": "NeoN",
+      "date": "2026.02.03(Tue)",
+      "sortDate": "2026-02-03",
+      "venue": "下北沢CREAM",
+      "images": ["neon-202602.jpg"],
+      "pinned": false
+    },
+    {
       "id": 0,
       "year": "2026",
       "title": "NeoN presents スナック夜煌-NeoN-",
