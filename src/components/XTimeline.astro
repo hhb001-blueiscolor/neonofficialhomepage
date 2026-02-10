@@ -1,0 +1,37 @@
+---
+---
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">POSTS</h2>
+        <div class="timeline-wrapper">
+            <a
+                class="twitter-timeline"
+                data-theme="dark"
+                data-chrome="noheader nofooter noborders transparent"
+                data-tweet-limit="3"
+                href="https://twitter.com/NeoN_DJ_NeoN"
+            >@NeoN_DJ_NeoN のポスト</a>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+    window.addEventListener('load', function() {
+        if (!document.getElementById('twitter-wjs')) {
+            var s = document.createElement('script');
+            s.id = 'twitter-wjs';
+            s.src = 'https://platform.twitter.com/widgets.js';
+            document.body.appendChild(s);
+        }
+    });
+</script>
+
+<style>
+    .timeline-wrapper {
+        max-width: 600px;
+        margin: 0 auto;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+</style>
