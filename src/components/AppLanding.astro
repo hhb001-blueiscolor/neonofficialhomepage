@@ -36,6 +36,7 @@ interface Props {
         userGuide: string;
         privacyPolicy: string;
         terms: string;
+        termsAndPrivacy: string;
         support: string;
         copyright: string;
         shazamNote: string;
@@ -206,6 +207,23 @@ const languages = [
                     <li><i class="fas fa-microphone"></i> {t.req3}</li>
                     <li><i class="fas fa-wifi"></i> {t.req4}</li>
                 </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Links Section -->
+    <section class="section links-section">
+        <div class="container">
+            <h2 class="section-title">{t.links}</h2>
+            <div class="links-grid">
+                <a href="https://neondjneon.com/manual" target="_blank" rel="noopener" class="link-btn">
+                    <i class="fas fa-book"></i>
+                    <span>{t.userGuide}</span>
+                </a>
+                <a href="https://neondjneon.com/" target="_blank" rel="noopener" class="link-btn">
+                    <i class="fas fa-file-contract"></i>
+                    <span>{t.termsAndPrivacy}</span>
+                </a>
             </div>
         </div>
     </section>
