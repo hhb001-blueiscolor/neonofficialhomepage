@@ -6,9 +6,10 @@ interface Props {
         tagline: string;
         description: string;
         heroDescription: string;
-        comingSoon: string;
         price: string;
         priceNote: string;
+        salePrice?: string;
+        storeUrl?: string;
         features: string;
         feature1Title: string;
         feature1Desc: string;
@@ -42,7 +43,6 @@ interface Props {
         shazamNote: string;
         backToNeon: string;
         selectLanguage: string;
-        releaseDate: string;
     };
 }
 
@@ -94,16 +94,15 @@ const languages = [
             <p class="app-tagline">{t.tagline}</p>
             <p class="app-description" set:html={t.heroDescription}></p>
 
-            <!-- App Store Badge (Placeholder) -->
+            <!-- App Store Badge -->
             <div class="app-store-badge">
-                <a href="#" class="badge-link coming-soon">
+                <a href={t.storeUrl || "#"} class="badge-link" target="_blank" rel="noopener">
                     <img src="/images/app/app-store-badge.svg" alt="Download on the App Store" />
-                    <span class="badge-overlay">{t.comingSoon}</span>
                 </a>
             </div>
 
-            <p class="app-release-date">{t.releaseDate}</p>
             <p class="app-price">{t.price} <span class="price-note">{t.priceNote}</span></p>
+            {t.salePrice && <p class="app-sale-price">{t.salePrice}</p>}
         </div>
     </section>
 
@@ -444,31 +443,6 @@ const languages = [
         filter: grayscale(0);
     }
 
-    .badge-link.coming-soon {
-        pointer-events: none;
-    }
-
-    .badge-overlay {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(0, 0, 0, 0.8);
-        color: var(--color-neon-cyan);
-        padding: 0.3rem 0.8rem;
-        border-radius: 4px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-    }
-
-    .app-release-date {
-        font-size: 1rem;
-        color: var(--color-neon-cyan);
-        margin-bottom: var(--spacing-xs);
-        animation: fadeInUp 0.8s ease-out 0.5s both;
-    }
-
     .app-price {
         font-size: 1.1rem;
         color: var(--color-text);
@@ -478,6 +452,15 @@ const languages = [
     .price-note {
         font-size: 0.85rem;
         color: var(--color-neon-magenta);
+    }
+
+    .app-sale-price {
+        font-size: 1.1rem;
+        color: var(--color-neon-cyan);
+        font-weight: 600;
+        margin-top: var(--spacing-xs);
+        animation: fadeInUp 0.8s ease-out 0.6s both;
+        text-shadow: 0 0 10px rgba(0, 255, 252, 0.3);
     }
 
     /* Features Section */
