@@ -10,6 +10,9 @@ interface Props {
         priceNote: string;
         salePrice?: string;
         storeUrl?: string;
+        purchaseNoteTitle?: string;
+        purchaseNoteBody?: string;
+        manualUrl?: string;
         features: string;
         feature1Title: string;
         feature1Desc: string;
@@ -103,6 +106,16 @@ const languages = [
 
             <p class="app-price">{t.price} <span class="price-note">{t.priceNote}</span></p>
             {t.salePrice && <p class="app-sale-price">{t.salePrice}</p>}
+
+            {t.purchaseNoteTitle && (
+                <div class="purchase-note">
+                    <p class="purchase-note-title">⚠ {t.purchaseNoteTitle}</p>
+                    <p class="purchase-note-body">{t.purchaseNoteBody}</p>
+                    <a href={t.manualUrl || "https://neondjneon.com/manual"} target="_blank" rel="noopener" class="purchase-note-link">
+                        <i class="fas fa-book"></i> {t.userGuide}
+                    </a>
+                </div>
+            )}
         </div>
     </section>
 
@@ -215,7 +228,7 @@ const languages = [
         <div class="container">
             <h2 class="section-title">{t.links}</h2>
             <div class="links-grid">
-                <a href="https://neondjneon.com/manual" target="_blank" rel="noopener" class="link-btn">
+                <a href={t.manualUrl || "https://neondjneon.com/manual"} target="_blank" rel="noopener" class="link-btn">
                     <i class="fas fa-book"></i>
                     <span>{t.userGuide}</span>
                 </a>
@@ -461,6 +474,43 @@ const languages = [
         margin-top: var(--spacing-xs);
         animation: fadeInUp 0.8s ease-out 0.6s both;
         text-shadow: 0 0 10px rgba(0, 255, 252, 0.3);
+    }
+
+    /* Purchase Note */
+    .purchase-note {
+        margin-top: var(--spacing-md);
+        animation: fadeInUp 0.8s ease-out 0.7s both;
+    }
+
+    .purchase-note-title {
+        font-size: 0.85rem;
+        color: var(--color-text-muted);
+        font-weight: 600;
+    }
+
+    .purchase-note-body {
+        font-size: 0.8rem;
+        color: var(--color-text-muted);
+        margin-top: 0.3rem;
+        line-height: 1.5;
+    }
+
+    .purchase-note-link {
+        display: inline-block;
+        margin-top: 0.4rem;
+        font-size: 0.8rem;
+        color: var(--color-neon-cyan);
+        opacity: 0.7;
+        transition: var(--transition-fast);
+    }
+
+    .purchase-note-link:hover {
+        opacity: 1;
+        text-shadow: 0 0 10px rgba(0, 255, 252, 0.3);
+    }
+
+    .purchase-note-link i {
+        margin-right: 0.3rem;
     }
 
     /* Features Section */
