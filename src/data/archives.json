@@ -1,6 +1,26 @@
 {
   "archives": [
     {
+      "id": -3,
+      "year": "2026",
+      "title": "NeoN VJ App Release Party -WHAT'S TRACK-",
+      "date": "2026.03.21(Sat)",
+      "sortDate": "2026-03-21",
+      "venue": "下北沢CREAM",
+      "images": ["neon-260321.jpg", "neon-260321-v2.jpg"],
+      "pinned": false
+    },
+    {
+      "id": -2,
+      "year": "2026",
+      "title": "NeoN",
+      "date": "2026.03.03(Tue)",
+      "sortDate": "2026-03-03",
+      "venue": "下北沢CREAM",
+      "images": ["neon-202603.jpeg"],
+      "pinned": false
+    },
+    {
       "id": -1,
       "year": "2026",
       "title": "NeoN",
