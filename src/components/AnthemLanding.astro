@@ -38,8 +38,14 @@
       <div class="volume-artists">
         <h3 class="artists-label">参加アーティスト</h3>
         <ul class="artists-list">
-          <li>空きっ腹に酒</li>
-          <li>ビレッジマンズストア</li>
+          <li>
+            <span class="artist-name">空きっ腹に酒</span>
+            <span class="release-info">「GLOW」2026年4月下旬リリース予定</span>
+          </li>
+          <li>
+            <span class="artist-name">ビレッジマンズストア</span>
+            <span class="release-info">「鳴りっぱ」2026年3月25日 配信リリース</span>
+          </li>
         </ul>
       </div>
       <!-- 配信リンク (リリース後に表示) -->
@@ -60,10 +66,6 @@
             <span>YouTube Music</span>
           </a>
         </div>
-      </div>
-      <!-- リリース前の表示 -->
-      <div class="coming-soon-badge">
-        <span>Coming Soon</span>
       </div>
     </div>
   </section>
@@ -237,8 +239,20 @@
   .artists-list li {
     font-size: 1.2rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
     color: #1a1a1a;
+  }
+
+  .artist-name {
+    display: block;
+  }
+
+  .release-info {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-top: 0.3rem;
   }
 
   /* Streaming Links */
