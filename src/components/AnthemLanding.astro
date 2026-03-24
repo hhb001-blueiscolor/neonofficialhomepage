@@ -52,7 +52,7 @@
           </li>
           <li>
             <span class="artist-name">ビレッジマンズストア</span>
-            <span class="release-info">「鳴りっぱ」2026年3月25日 配信リリース</span>
+            <a href="https://orcd.co/villagemansstore" class="release-link" target="_blank" rel="noopener">「鳴りっぱ」2026年3月25日 配信リリース</a>
           </li>
         </ul>
       </div>
@@ -267,6 +267,20 @@
     font-weight: 600;
     color: #1a1a1a;
     margin-top: 0.3rem;
+  }
+
+  .release-link {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fc00ff;
+    margin-top: 0.3rem;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+  }
+
+  .release-link:hover {
+    opacity: 0.7;
   }
 
   /* Streaming Links */
