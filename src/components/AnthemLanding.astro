@@ -17,7 +17,15 @@
 
   <!-- Hero Section -->
   <section class="anthem-hero">
-    <img src="/images/anthem-logo.jpg" alt="NeoN ANTHEM PROJECT" class="anthem-logo" />
+    <div class="anthem-video">
+      <iframe
+        src="https://www.youtube.com/embed/0e7W7mI6lyE"
+        title="NeoN ANTHEM PROJECT"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
   </section>
 
   <!-- Concept Section -->
@@ -155,10 +163,16 @@
     background: linear-gradient(180deg, #f8f8f8 0%, #fff 100%);
   }
 
-  .anthem-logo {
-    max-width: 400px;
-    width: 80%;
+  .anthem-video {
+    width: 100%;
+    max-width: 560px;
     margin: 0 auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .anthem-video iframe {
+    width: 100%;
+    height: 100%;
     border-radius: 8px;
   }
 
@@ -382,8 +396,8 @@
       padding: 5rem 1rem 2rem;
     }
 
-    .anthem-logo {
-      max-width: 300px;
+    .anthem-video {
+      max-width: 100%;
     }
 
     .concept-lead {
