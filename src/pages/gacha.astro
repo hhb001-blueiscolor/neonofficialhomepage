@@ -1,0 +1,388 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL || 'https://ewvhtmnuuraqdwrcbyni.supabase.co';
+const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_KOqfQIPd2qL9okKtuV8QlA_fCBMUyo1';
+---
+
+<Layout
+  title="Sol-fa x NeoN Gacha"
+  description="Sol-fa x NeoN Gacha - イベント限定くじ引き"
+>
+  <main class="gacha-page">
+
+    <!-- ローディング画面 -->
+    <div id="gacha-loading" class="gacha-screen active">
+      <div class="gacha-spinner"></div>
+      <p class="gacha-loading-text">Loading...</p>
+    </div>
+
+    <!-- 設定エラー画面（環境変数未設定時） -->
+    <div id="gacha-not-configured" class="gacha-screen">
+      <h2 class="error-title">準備中</h2>
+      <p class="error-message">ガチャの設定がまだ完了していません。</p>
+    </div>
+
+    <!-- 抽選画面 -->
+    <div id="gacha-ready" class="gacha-screen">
+      <div class="gacha-header">
+        <h1 class="gacha-title">Sol-fa x NeoN Gacha</h1>
+        <p class="gacha-subtitle">ボタンを押してガチャを回そう!</p>
+      </div>
+
+      <div class="gacha-machine">
+        <div class="vinyl-record" id="vinyl-idle">
+          <div class="vinyl-groove"></div>
+          <div class="vinyl-groove vinyl-groove-2"></div>
+          <div class="vinyl-groove vinyl-groove-3"></div>
+          <div class="vinyl-label">
+            <span class="vinyl-label-top">Sol-fa</span>
+            <span class="vinyl-label-bottom">NeoN</span>
+          </div>
+          <div class="vinyl-shine"></div>
+        </div>
+        <button id="gacha-btn" class="gacha-draw-btn">DRAW!</button>
+      </div>
+
+      <div class="gacha-stock" id="gacha-stock-ready"></div>
+    </div>
+
+    <!-- アニメーション中 -->
+    <div id="gacha-spinning" class="gacha-screen">
+      <div class="gacha-animation">
+        <div class="vinyl-record vinyl-spinning">
+          <div class="vinyl-groove"></div>
+          <div class="vinyl-groove vinyl-groove-2"></div>
+          <div class="vinyl-groove vinyl-groove-3"></div>
+          <div class="vinyl-label vinyl-label-spin">
+            <span class="vinyl-label-top">Sol-fa</span>
+            <span class="vinyl-label-bottom">NeoN</span>
+          </div>
+          <div class="vinyl-shine"></div>
+        </div>
+      </div>
+      <p class="gacha-spinning-text">抽選中...</p>
+    </div>
+
+    <!-- 結果画面 -->
+    <div id="gacha-result" class="gacha-screen">
+      <div class="result-card" id="result-card">
+        <span class="result-tier-badge" id="result-tier-badge"></span>
+        <div class="result-tier" id="result-tier"></div>
+        <div class="result-description" id="result-description"></div>
+        <p class="result-instruction">スタッフに画面を見せてください</p>
+        <p class="result-already" id="result-already" style="display:none;">
+          ※ 既に抽選済みです（前回の結果を表示しています）
+        </p>
+      </div>
+      <div class="gacha-stock" id="gacha-stock-result"></div>
+    </div>
+
+    <!-- 在庫切れ画面 -->
+    <div id="gacha-soldout" class="gacha-screen">
+      <h2 class="soldout-title">SOLD OUT</h2>
+      <p class="soldout-text">全てのガチャ景品が終了しました</p>
+      <div class="gacha-stock" id="gacha-stock-soldout"></div>
+    </div>
+
+    <!-- エラー画面 -->
+    <div id="gacha-error" class="gacha-screen">
+      <h2 class="error-title">エラー</h2>
+      <p class="error-message" id="error-message">通信エラーが発生しました</p>
+      <button id="gacha-retry-btn" class="gacha-draw-btn">リトライ</button>
+    </div>
+
+    <!-- テスト用デバッグパネル（本番前に削除） -->
+    <div id="debug-panel" class="debug-panel">
+      <p class="debug-label">DEBUG</p>
+      <button id="debug-reset-btn" class="debug-btn">リセットして再抽選</button>
+      <button id="debug-reset-all-btn" class="debug-btn">在庫も全リセット</button>
+    </div>
+
+  </main>
+</Layout>
+
+<style is:global>
+  @import '../styles/gacha.css';
+</style>
+
+<!-- 環境変数をクライアントに渡す -->
+<script define:vars={{ supabaseUrl, supabaseAnonKey }}>
+  window.__GACHA_CONFIG__ = { supabaseUrl, supabaseAnonKey };
+</script>
+
+<!-- Supabase JS v2 (CDN) -->
+<script is:inline src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- FingerprintJS v4 Open Source (CDN) -->
+<script is:inline src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@4/dist/fp.min.js"></script>
+
+<!-- ガチャロジック -->
+<script is:inline>
+(async function() {
+  'use strict';
+
+  // === 設定 ===
+  var config = window.__GACHA_CONFIG__ || {};
+  var LS_KEY = 'neon_gacha_result';
+  var LS_FP_KEY = 'neon_gacha_fp';
+
+  // === 画面管理 ===
+  var screenIds = [
+    'gacha-loading', 'gacha-not-configured', 'gacha-ready',
+    'gacha-spinning', 'gacha-result', 'gacha-soldout', 'gacha-error'
+  ];
+
+  function showScreen(id) {
+    screenIds.forEach(function(sid) {
+      var el = document.getElementById(sid);
+      if (el) el.classList.toggle('active', sid === id);
+    });
+  }
+
+  // === 環境変数チェック ===
+  if (!config.supabaseUrl || !config.supabaseAnonKey) {
+    showScreen('gacha-not-configured');
+    return;
+  }
+
+  // === Supabase クライアント初期化 ===
+  var createClient = window.supabase && window.supabase.createClient;
+  if (!createClient) {
+    showScreen('gacha-error');
+    document.getElementById('error-message').textContent =
+      'ライブラリの読み込みに失敗しました。ページを再読み込みしてください。';
+    return;
+  }
+
+  var db = createClient(config.supabaseUrl, config.supabaseAnonKey);
+
+  // === フィンガープリント生成 ===
+  var fingerprint = null;
+  try {
+    if (window.FingerprintJS) {
+      var fp = await FingerprintJS.load();
+      var fpResult = await fp.get();
+      fingerprint = fpResult.visitorId;
+    } else {
+      throw new Error('FingerprintJS not loaded');
+    }
+  } catch (e) {
+    // フォールバック: localStorage ベースのランダムID
+    fingerprint = localStorage.getItem(LS_FP_KEY);
+    if (!fingerprint) {
+      fingerprint = 'fb_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
+      localStorage.setItem(LS_FP_KEY, fingerprint);
+    }
+  }
+
+  // === デバッグ: リセットして再抽選 ===
+  document.getElementById('debug-reset-btn').addEventListener('click', async function() {
+    try {
+      localStorage.removeItem(LS_KEY);
+      localStorage.removeItem(LS_FP_KEY);
+      var res = await db.rpc('reset_gacha', { p_reset_stock: false });
+      if (res.error) { alert('Reset error: ' + res.error.message); return; }
+      location.reload();
+    } catch (e) { alert('Reset failed: ' + e.message); }
+  });
+
+  // === デバッグ: 在庫も全リセット ===
+  document.getElementById('debug-reset-all-btn').addEventListener('click', async function() {
+    try {
+      localStorage.removeItem(LS_KEY);
+      localStorage.removeItem(LS_FP_KEY);
+      var res = await db.rpc('reset_gacha', { p_reset_stock: true });
+      if (res.error) { alert('Stock reset error: ' + res.error.message); return; }
+      location.reload();
+    } catch (e) { alert('Stock reset failed: ' + e.message); }
+  });
+
+  // === 等級ごとの色定義（NeoNテーマ） ===
+  var tierColors = {
+    '特賞': '#ffd700',
+    '1等': '#fc00ff',
+    '2等': '#00fffc',
+    '3等': '#45b7d1',
+    '4等': '#888'
+  };
+
+  // === 在庫読み込み ===
+  async function loadStock(targetId) {
+    try {
+      var resp = await db
+        .from('prizes')
+        .select('tier, name, stock, initial_stock, emoji, tier_order')
+        .order('tier_order', { ascending: true });
+
+      if (resp.error) throw resp.error;
+
+      var data = resp.data;
+      var totalRemaining = 0;
+      var totalInitial = 0;
+      data.forEach(function(p) {
+        totalRemaining += p.stock;
+        totalInitial += p.initial_stock;
+      });
+
+      var html = '<h3 class="stock-title">ガチャ景品</h3>';
+      html += '<div class="stock-total"><span class="stock-total-num">' + totalRemaining + '</span> / ' + totalInitial + '</div>';
+      html += '<div class="stock-bars">';
+      data.forEach(function(p) {
+        var pct = p.initial_stock > 0 ? (p.stock / p.initial_stock * 100) : 0;
+        var isEmpty = p.stock === 0;
+        html += '<div class="stock-row' + (isEmpty ? ' stock-empty' : '') + '">';
+        html += '  <span class="stock-label">' + p.tier + '</span>';
+        html += '  <div class="stock-bar-bg">';
+        html += '    <div class="stock-bar-fill" style="width:' + pct + '%"></div>';
+        html += '  </div>';
+        html += '  <span class="stock-count">' + p.stock + '/' + p.initial_stock + '</span>';
+        html += '</div>';
+      });
+      html += '</div>';
+
+      // 指定された在庫表示エリアに挿入
+      var stockEl = document.getElementById(targetId);
+      if (stockEl) stockEl.innerHTML = html;
+
+      return totalRemaining;
+    } catch (e) {
+      console.error('Stock load failed:', e);
+      return -1;
+    }
+  }
+
+  // === 結果表示 ===
+  function showResult(data) {
+    var prize = data.prize;
+    var color = tierColors[prize.tier] || '#fff';
+
+    var card = document.getElementById('result-card');
+    card.style.borderColor = color;
+    card.style.boxShadow = '0 0 40px ' + color + '40';
+
+    var badge = document.getElementById('result-tier-badge');
+    badge.textContent = prize.tier;
+    badge.style.borderColor = color;
+    badge.style.color = color;
+
+    document.getElementById('result-tier').textContent = prize.name;
+    document.getElementById('result-tier').style.color = color;
+    document.getElementById('result-description').textContent = prize.description || '';
+
+    var alreadyEl = document.getElementById('result-already');
+    if (data.status === 'already_played') {
+      alreadyEl.style.display = 'block';
+    } else {
+      alreadyEl.style.display = 'none';
+    }
+
+    // 特賞・1等は紙吹雪
+    if (prize.tier_order <= 1) {
+      launchConfetti();
+    }
+
+    showScreen('gacha-result');
+    loadStock('gacha-stock-result');
+  }
+
+  // === 紙吹雪 ===
+  function launchConfetti() {
+    var container = document.createElement('div');
+    container.className = 'confetti-container';
+    document.body.appendChild(container);
+
+    var colors = ['#00fffc', '#fc00ff', '#ffd700', '#fff', '#45b7d1'];
+    for (var i = 0; i < 60; i++) {
+      var piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      piece.style.left = Math.random() * 100 + '%';
+      piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.animationDelay = Math.random() * 2 + 's';
+      piece.style.animationDuration = (2 + Math.random() * 2) + 's';
+      piece.style.width = (6 + Math.random() * 8) + 'px';
+      piece.style.height = (6 + Math.random() * 8) + 'px';
+      piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+      container.appendChild(piece);
+    }
+
+    setTimeout(function() { container.remove(); }, 5000);
+  }
+
+  // === localStorage キャッシュ確認（高速パス） ===
+  var cached = null;
+  try {
+    var raw = localStorage.getItem(LS_KEY);
+    if (raw) cached = JSON.parse(raw);
+  } catch (e) { /* 破損データは無視 */ }
+
+  if (cached && cached.prize) {
+    showResult(cached);
+    return;
+  }
+
+  // === 在庫読み込み & 画面表示 ===
+  var totalRemaining = await loadStock('gacha-stock-ready');
+
+  if (totalRemaining === 0) {
+    showScreen('gacha-soldout');
+    loadStock('gacha-stock-soldout');
+    return;
+  }
+
+  showScreen('gacha-ready');
+
+  // === DRAW ボタン ===
+  var drawBtn = document.getElementById('gacha-btn');
+  drawBtn.addEventListener('click', async function() {
+    drawBtn.disabled = true;
+    showScreen('gacha-spinning');
+
+    // アニメーション最低時間 & RPC 呼び出しを並行実行
+    var animationPromise = new Promise(function(resolve) {
+      setTimeout(resolve, 2500);
+    });
+
+    var rpcPromise = db.rpc('draw_gacha', { p_fingerprint: fingerprint });
+
+    try {
+      var results = await Promise.all([animationPromise, rpcPromise]);
+      var rpcResult = results[1];
+
+      if (rpcResult.error) throw rpcResult.error;
+
+      var data = rpcResult.data;
+
+      if (data.status === 'sold_out') {
+        showScreen('gacha-soldout');
+        loadStock('gacha-stock-soldout');
+        return;
+      }
+
+      if (data.status === 'won' || data.status === 'already_played') {
+        // localStorage にキャッシュ
+        try {
+          localStorage.setItem(LS_KEY, JSON.stringify(data));
+        } catch (e) { /* storage full等は無視 */ }
+
+        showResult(data);
+      } else if (data.status === 'error') {
+        throw new Error('Server returned error status');
+      }
+    } catch (e) {
+      console.error('Draw failed:', e);
+      document.getElementById('error-message').textContent =
+        '通信エラーが発生しました。もう一度お試しください。';
+      showScreen('gacha-error');
+      drawBtn.disabled = false;
+    }
+  });
+
+  // === リトライボタン ===
+  document.getElementById('gacha-retry-btn').addEventListener('click', function() {
+    showScreen('gacha-ready');
+    drawBtn.disabled = false;
+  });
+
+})();
+</script>
