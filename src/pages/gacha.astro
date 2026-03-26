@@ -99,21 +99,29 @@ const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'sb_publisha
     <div id="staff-modal" class="staff-modal">
       <div class="staff-modal-backdrop" id="staff-modal-backdrop"></div>
       <div class="staff-modal-content">
-        <p class="staff-modal-title">スタッフ認証</p>
-        <input
-          type="password"
-          id="staff-password"
-          class="staff-input"
-          placeholder="パスワード"
-          inputmode="numeric"
-          maxlength="8"
-          autocomplete="off"
-        />
-        <p id="staff-error" class="staff-error"></p>
-        <div class="staff-actions">
-          <button id="staff-reset-btn" class="staff-action-btn">再抽選を許可</button>
-          <!-- テスト期間用（本番リリース時に削除） -->
-          <button id="staff-reset-all-btn" class="staff-action-btn staff-action-danger">在庫も全リセット</button>
+        <!-- Step 1: パスワード入力 -->
+        <div id="staff-step-auth" class="staff-step">
+          <p class="staff-modal-title">スタッフ認証</p>
+          <input
+            type="password"
+            id="staff-password"
+            class="staff-input"
+            placeholder="パスワード"
+            inputmode="numeric"
+            maxlength="8"
+            autocomplete="off"
+          />
+          <p id="staff-error" class="staff-error"></p>
+          <button id="staff-auth-btn" class="staff-action-btn staff-action-primary">認証</button>
+        </div>
+        <!-- Step 2: 操作選択（認証後に表示） -->
+        <div id="staff-step-actions" class="staff-step" style="display:none;">
+          <p class="staff-modal-title">スタッフメニュー</p>
+          <div class="staff-actions">
+            <button id="staff-reset-btn" class="staff-action-btn">再抽選を許可</button>
+            <!-- テスト期間用（本番リリース時に削除） -->
+            <button id="staff-reset-all-btn" class="staff-action-btn staff-action-danger">在庫も全リセット</button>
+          </div>
         </div>
         <button id="staff-modal-close" class="staff-close-btn">閉じる</button>
       </div>
@@ -196,14 +204,18 @@ const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'sb_publisha
     }
   }
 
-  // === スタッフ認証モーダル ===
+  // === スタッフ認証モーダル（2段階） ===
   var STAFF_PASS = '0000';
   var staffModal = document.getElementById('staff-modal');
   var staffPassword = document.getElementById('staff-password');
   var staffError = document.getElementById('staff-error');
+  var stepAuth = document.getElementById('staff-step-auth');
+  var stepActions = document.getElementById('staff-step-actions');
 
   function openStaffModal() {
     staffModal.classList.add('active');
+    stepAuth.style.display = '';
+    stepActions.style.display = 'none';
     staffPassword.value = '';
     staffError.textContent = '';
     staffPassword.focus();
@@ -215,41 +227,47 @@ const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'sb_publisha
     staffError.textContent = '';
   }
 
-  function validateStaffPass() {
-    if (staffPassword.value !== STAFF_PASS) {
-      staffError.textContent = 'パスワードが違います';
-      staffPassword.value = '';
-      staffPassword.focus();
-      return false;
-    }
-    return true;
-  }
-
   document.getElementById('staff-trigger').addEventListener('click', openStaffModal);
   document.getElementById('staff-modal-backdrop').addEventListener('click', closeStaffModal);
   document.getElementById('staff-modal-close').addEventListener('click', closeStaffModal);
 
+  // Step 1: パスワード認証
+  document.getElementById('staff-auth-btn').addEventListener('click', function() {
+    if (staffPassword.value !== STAFF_PASS) {
+      staffError.textContent = 'パスワードが違います';
+      staffPassword.value = '';
+      staffPassword.focus();
+      return;
+    }
+    stepAuth.style.display = 'none';
+    stepActions.style.display = '';
+  });
+
+  // Enter キーでも認証
+  staffPassword.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') document.getElementById('staff-auth-btn').click();
+  });
+
+  // Step 2: 操作実行
   document.getElementById('staff-reset-btn').addEventListener('click', async function() {
-    if (!validateStaffPass()) return;
     try {
       localStorage.removeItem(LS_KEY);
       localStorage.removeItem(LS_FP_KEY);
       var res = await db.rpc('reset_gacha', { p_reset_stock: false });
-      if (res.error) { staffError.textContent = 'エラー: ' + res.error.message; return; }
+      if (res.error) { alert('エラー: ' + res.error.message); return; }
       location.reload();
-    } catch (e) { staffError.textContent = 'エラー: ' + e.message; }
+    } catch (e) { alert('エラー: ' + e.message); }
   });
 
   document.getElementById('staff-reset-all-btn').addEventListener('click', async function() {
-    if (!validateStaffPass()) return;
     if (!confirm('在庫を初期状態に戻します。よろしいですか？')) return;
     try {
       localStorage.removeItem(LS_KEY);
       localStorage.removeItem(LS_FP_KEY);
       var res = await db.rpc('reset_gacha', { p_reset_stock: true });
-      if (res.error) { staffError.textContent = 'エラー: ' + res.error.message; return; }
+      if (res.error) { alert('エラー: ' + res.error.message); return; }
       location.reload();
-    } catch (e) { staffError.textContent = 'エラー: ' + e.message; }
+    } catch (e) { alert('エラー: ' + e.message); }
   });
 
   // === 等級ごとの色定義（NeoNテーマ） ===
