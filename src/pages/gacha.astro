@@ -92,11 +92,30 @@ const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'sb_publisha
       <button id="gacha-retry-btn" class="gacha-draw-btn">リトライ</button>
     </div>
 
-    <!-- テスト用デバッグパネル（本番前に削除） -->
-    <div id="debug-panel" class="debug-panel">
-      <p class="debug-label">DEBUG</p>
-      <button id="debug-reset-btn" class="debug-btn">リセットして再抽選</button>
-      <button id="debug-reset-all-btn" class="debug-btn">在庫も全リセット</button>
+    <!-- スタッフ用管理ボタン -->
+    <button id="staff-trigger" class="staff-trigger" aria-label="スタッフメニュー">STAFF</button>
+
+    <!-- スタッフ認証モーダル -->
+    <div id="staff-modal" class="staff-modal">
+      <div class="staff-modal-backdrop" id="staff-modal-backdrop"></div>
+      <div class="staff-modal-content">
+        <p class="staff-modal-title">スタッフ認証</p>
+        <input
+          type="password"
+          id="staff-password"
+          class="staff-input"
+          placeholder="パスワード"
+          inputmode="numeric"
+          maxlength="8"
+          autocomplete="off"
+        />
+        <p id="staff-error" class="staff-error"></p>
+        <div class="staff-actions">
+          <button id="staff-reset-btn" class="staff-action-btn">再抽選を許可</button>
+          <button id="staff-reset-all-btn" class="staff-action-btn staff-action-danger">在庫も全リセット</button>
+        </div>
+        <button id="staff-modal-close" class="staff-close-btn">閉じる</button>
+      </div>
     </div>
 
   </main>
@@ -176,26 +195,60 @@ const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'sb_publisha
     }
   }
 
-  // === デバッグ: リセットして再抽選 ===
-  document.getElementById('debug-reset-btn').addEventListener('click', async function() {
+  // === スタッフ認証モーダル ===
+  var STAFF_PASS = '0000';
+  var staffModal = document.getElementById('staff-modal');
+  var staffPassword = document.getElementById('staff-password');
+  var staffError = document.getElementById('staff-error');
+
+  function openStaffModal() {
+    staffModal.classList.add('active');
+    staffPassword.value = '';
+    staffError.textContent = '';
+    staffPassword.focus();
+  }
+
+  function closeStaffModal() {
+    staffModal.classList.remove('active');
+    staffPassword.value = '';
+    staffError.textContent = '';
+  }
+
+  function validateStaffPass() {
+    if (staffPassword.value !== STAFF_PASS) {
+      staffError.textContent = 'パスワードが違います';
+      staffPassword.value = '';
+      staffPassword.focus();
+      return false;
+    }
+    return true;
+  }
+
+  document.getElementById('staff-trigger').addEventListener('click', openStaffModal);
+  document.getElementById('staff-modal-backdrop').addEventListener('click', closeStaffModal);
+  document.getElementById('staff-modal-close').addEventListener('click', closeStaffModal);
+
+  document.getElementById('staff-reset-btn').addEventListener('click', async function() {
+    if (!validateStaffPass()) return;
     try {
       localStorage.removeItem(LS_KEY);
       localStorage.removeItem(LS_FP_KEY);
       var res = await db.rpc('reset_gacha', { p_reset_stock: false });
-      if (res.error) { alert('Reset error: ' + res.error.message); return; }
+      if (res.error) { staffError.textContent = 'エラー: ' + res.error.message; return; }
       location.reload();
-    } catch (e) { alert('Reset failed: ' + e.message); }
+    } catch (e) { staffError.textContent = 'エラー: ' + e.message; }
   });
 
-  // === デバッグ: 在庫も全リセット ===
-  document.getElementById('debug-reset-all-btn').addEventListener('click', async function() {
+  document.getElementById('staff-reset-all-btn').addEventListener('click', async function() {
+    if (!validateStaffPass()) return;
+    if (!confirm('在庫を初期状態に戻します。よろしいですか？')) return;
     try {
       localStorage.removeItem(LS_KEY);
       localStorage.removeItem(LS_FP_KEY);
       var res = await db.rpc('reset_gacha', { p_reset_stock: true });
-      if (res.error) { alert('Stock reset error: ' + res.error.message); return; }
+      if (res.error) { staffError.textContent = 'エラー: ' + res.error.message; return; }
       location.reload();
-    } catch (e) { alert('Stock reset failed: ' + e.message); }
+    } catch (e) { staffError.textContent = 'エラー: ' + e.message; }
   });
 
   // === 等級ごとの色定義（NeoNテーマ） ===

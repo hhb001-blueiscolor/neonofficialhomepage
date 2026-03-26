@@ -499,48 +499,149 @@
 }
 
 /* ========================================
-   Debug Panel（本番前に削除）
+   Staff Trigger Button
    ======================================== */
-.debug-panel {
+.staff-trigger {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(255, 0, 0, 0.1);
-  border-top: 1px solid #ff4444;
-  padding: 0.6rem 0.75rem;
-  padding-bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  z-index: 10000;
+  bottom: 12px;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  background: #1a1a1a;
+  color: #555;
+  border: 1px solid #333;
+  padding: 0.4rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  touch-action: manipulation;
+  z-index: 100;
+  opacity: 0.4;
+  transition: opacity 0.2s;
 }
 
-.debug-label {
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: #ff4444;
-  letter-spacing: 0.1em;
+.staff-trigger:active {
+  opacity: 1;
+}
+
+/* ========================================
+   Staff Auth Modal
+   ======================================== */
+.staff-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+}
+
+.staff-modal.active {
+  display: flex;
+}
+
+.staff-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.staff-modal-content {
+  position: relative;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  width: calc(100% - 2rem);
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.staff-modal-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #888;
+  letter-spacing: 0.15em;
   margin: 0;
 }
 
-.debug-btn {
-  background: #ff4444;
+.staff-input {
+  width: 100%;
+  background: #0a0a0a;
+  border: 1px solid #333;
+  border-radius: 8px;
   color: #fff;
-  border: none;
-  padding: 0.5rem 0.75rem;
-  min-height: 36px;
-  border-radius: 4px;
-  font-size: 0.7rem;
+  font-size: 1.2rem;
   font-family: inherit;
-  cursor: pointer;
-  touch-action: manipulation;
-  transition: background 0.15s;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  letter-spacing: 0.3em;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
-.debug-btn:active {
-  background: #cc0000;
+.staff-input:focus {
+  border-color: #00fffc;
+}
+
+.staff-error {
+  font-size: 0.8rem;
+  color: #fc00ff;
+  margin: 0;
+  min-height: 1.2em;
+}
+
+.staff-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.staff-action-btn {
+  width: 100%;
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 0.75rem;
+  min-height: 44px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.staff-action-btn:active {
+  background: #333;
+  border-color: #00fffc;
+}
+
+.staff-action-danger {
+  color: #ff4444;
+  border-color: #442222;
+}
+
+.staff-action-danger:active {
+  border-color: #ff4444;
+}
+
+.staff-close-btn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 0.8rem;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  touch-action: manipulation;
 }
 
 /* ========================================
