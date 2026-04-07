@@ -3,12 +3,23 @@
     {
       "id": 1,
       "title": "NeoN",
-      "date": "2026.04.07(Tue)",
+      "date": "2026.05.12(Tue)",
       "venue": "下北沢CREAM",
       "venueUrl": "https://maps.app.goo.gl/kWn7MfTLiCtdhdjm6",
       "price": null,
-      "images": ["neon-202604.jpeg"],
+      "images": ["now_printing.svg"],
       "ticketUrl": null,
+      "note": null
+    },
+    {
+      "id": 2,
+      "title": "NeoN -3rd Anniversary-",
+      "date": "2026.06.13(Sat)",
+      "venue": "下北沢CREAM",
+      "venueUrl": "https://maps.app.goo.gl/kWn7MfTLiCtdhdjm6",
+      "price": null,
+      "images": ["neon-202606.jpeg"],
+      "ticketUrl": "https://tiget.net/events/479568",
       "note": null
     }
   ]
