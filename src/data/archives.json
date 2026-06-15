@@ -1,6 +1,36 @@
 {
   "archives": [
     {
+      "id": -7,
+      "year": "2026",
+      "title": "NeoN -3rd Anniversary-",
+      "date": "2026.06.13(Sat)",
+      "sortDate": "2026-06-13",
+      "venue": "下北沢CREAM",
+      "images": ["neon-202606.jpeg", "neon-202606-2.jpeg"],
+      "pinned": false
+    },
+    {
+      "id": -6,
+      "year": "2026",
+      "title": "NeoN presents「Teach!!!Teacher!!!Teachest!!!」",
+      "date": "2026.06.02(Tue)",
+      "sortDate": "2026-06-02",
+      "venue": "下北沢CREAM",
+      "images": ["neon-202606a-1.jpeg", "neon-202606a-2.jpeg"],
+      "pinned": false
+    },
+    {
+      "id": -5,
+      "year": "2026",
+      "title": "NeoN",
+      "date": "2026.05.12(Tue)",
+      "sortDate": "2026-05-12",
+      "venue": "下北沢CREAM",
+      "images": ["neon-202605.jpeg"],
+      "pinned": false
+    },
+    {
       "id": -4,
       "year": "2026",
       "title": "NeoN",

@@ -12,6 +12,7 @@ interface Props {
         storeUrl?: string;
         purchaseNoteTitle?: string;
         purchaseNoteBody?: string;
+        purchaseNoteWarning?: string;
         manualUrl?: string;
         features: string;
         feature1Title: string;
@@ -113,6 +114,7 @@ const languages = [
                 <div class="purchase-note">
                     <p class="purchase-note-title">⚠ {t.purchaseNoteTitle}</p>
                     <p class="purchase-note-body">{t.purchaseNoteBody}</p>
+                    {t.purchaseNoteWarning && <p class="purchase-note-warning">{t.purchaseNoteWarning}</p>}
                     <a href={t.manualUrl || "https://neondjneon.com/manual"} target="_blank" rel="noopener" class="purchase-note-link">
                         <i class="fas fa-book"></i> {t.userGuide}
                     </a>
@@ -503,6 +505,14 @@ const languages = [
     .purchase-note-body {
         font-size: 0.8rem;
         color: var(--color-text-muted);
+        margin-top: 0.3rem;
+        line-height: 1.5;
+    }
+
+    .purchase-note-warning {
+        font-size: 0.8rem;
+        color: var(--color-neon-magenta);
+        font-weight: 600;
         margin-top: 0.3rem;
         line-height: 1.5;
     }
