@@ -25,6 +25,9 @@ interface Props {
         feature4Desc: string;
         feature5Title?: string;
         feature5Desc?: string;
+        feature6Title?: string;
+        feature6Desc?: string;
+        feature6Note?: string;
         useCases: string;
         useCase1Title: string;
         useCase1Desc: string;
@@ -168,6 +171,17 @@ const languages = [
                     </div>
                     <h3>{t.feature5Title}</h3>
                     <p>{t.feature5Desc}</p>
+                </div>
+                )}
+
+                {t.feature6Title && (
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3>{t.feature6Title}</h3>
+                    <p>{t.feature6Desc}</p>
+                    {t.feature6Note && <p class="feature-note-warning">{t.feature6Note}</p>}
                 </div>
                 )}
             </div>
@@ -507,6 +521,13 @@ const languages = [
         color: var(--color-text-muted);
         margin-top: 0.3rem;
         line-height: 1.5;
+    }
+
+    .feature-card p.feature-note-warning {
+        font-size: 0.8rem;
+        color: var(--color-neon-magenta);
+        font-weight: 600;
+        margin-top: 0.5rem;
     }
 
     .purchase-note-warning {
