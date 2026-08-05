@@ -1,6 +1,26 @@
 {
   "archives": [
     {
+      "id": -9,
+      "year": "2026",
+      "title": "NeoN",
+      "date": "2026.08.04(Tue)",
+      "sortDate": "2026-08-04",
+      "venue": "下北沢CREAM",
+      "images": ["neon-202608.jpeg"],
+      "pinned": false
+    },
+    {
+      "id": -8,
+      "year": "2026",
+      "title": "NeoN",
+      "date": "2026.07.14(Tue)",
+      "sortDate": "2026-07-14",
+      "venue": "下北沢CREAM",
+      "images": ["neon-202607.jpeg"],
+      "pinned": false
+    },
+    {
       "id": -7,
       "year": "2026",
       "title": "NeoN -3rd Anniversary-",
