@@ -1,0 +1,706 @@
+/* ========================================
+   NeoN Gacha - Mobile-First Theme
+   イベント会場スマホアクセス最適化
+   ======================================== */
+
+.gacha-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #000;
+  background-image:
+    radial-gradient(ellipse at center, rgba(0, 255, 252, 0.03) 0%, transparent 70%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1.5rem 1rem 5rem;
+  font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  color: #fff;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
+}
+
+.gacha-page a { color: #00fffc; }
+
+/* ========================================
+   Screen Management
+   ======================================== */
+.gacha-screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 480px;
+  gap: 1.5rem;
+}
+
+.gacha-screen.active {
+  display: flex;
+}
+
+/* ========================================
+   Header / Logo
+   ======================================== */
+.gacha-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.gacha-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.15em;
+  margin: 0;
+  animation: neonPulseGacha 3s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulseGacha {
+  0% {
+    text-shadow:
+      0 0 5px #00fffc,
+      0 0 10px #00fffc,
+      0 0 20px #00fffc;
+  }
+  100% {
+    text-shadow:
+      0 0 5px #fc00ff,
+      0 0 10px #fc00ff,
+      0 0 20px #fc00ff;
+  }
+}
+
+.gacha-subtitle {
+  font-size: 0.9rem;
+  color: #888;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+/* ========================================
+   Gacha Machine
+   ======================================== */
+.gacha-machine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+/* ========================================
+   Vinyl Record
+   ======================================== */
+.vinyl-record {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #1a1a1a 0%,
+    #111 20%,
+    #1a1a1a 21%,
+    #0d0d0d 40%,
+    #1a1a1a 41%,
+    #111 60%,
+    #1a1a1a 61%,
+    #0d0d0d 80%,
+    #222 100%
+  );
+  position: relative;
+  box-shadow:
+    0 0 0 3px #333,
+    0 0 30px rgba(0, 255, 252, 0.1),
+    0 8px 30px rgba(0, 0, 0, 0.5);
+  animation: vinylFloat 3s ease-in-out infinite;
+}
+
+.vinyl-groove {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  top: 15%;
+  left: 15%;
+  right: 15%;
+  bottom: 15%;
+}
+
+.vinyl-groove-2 {
+  top: 25%;
+  left: 25%;
+  right: 25%;
+  bottom: 25%;
+  border-color: rgba(255, 255, 255, 0.03);
+}
+
+.vinyl-groove-3 {
+  top: 35%;
+  left: 35%;
+  right: 35%;
+  bottom: 35%;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.vinyl-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00fffc, #fc00ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(0, 255, 252, 0.3);
+}
+
+.vinyl-label::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #000;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.vinyl-label-top,
+.vinyl-label-bottom {
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 0.1em;
+  position: absolute;
+  line-height: 1;
+}
+
+.vinyl-label-top {
+  font-size: 0.5rem;
+  top: 12px;
+}
+
+.vinyl-label-bottom {
+  font-size: 0.6rem;
+  bottom: 12px;
+  letter-spacing: 0.15em;
+}
+
+.vinyl-shine {
+  position: absolute;
+  top: 5%;
+  left: 15%;
+  width: 30%;
+  height: 20%;
+  border-radius: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 100%
+  );
+  transform: rotate(-30deg);
+}
+
+@keyframes vinylFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+/* Spinning state */
+.vinyl-spinning {
+  width: 180px;
+  height: 180px;
+  animation: vinylSpin 0.8s linear infinite;
+  box-shadow:
+    0 0 0 3px #333,
+    0 0 40px rgba(0, 255, 252, 0.25),
+    0 0 80px rgba(252, 0, 255, 0.1);
+}
+
+@keyframes vinylSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ========================================
+   Draw Button
+   ======================================== */
+.gacha-draw-btn {
+  background: linear-gradient(135deg, #00fffc, #fc00ff);
+  color: #000;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 1rem 3rem;
+  min-height: 48px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  letter-spacing: 0.2em;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 20px rgba(0, 255, 252, 0.3);
+  font-family: inherit;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.gacha-draw-btn:hover:not(:disabled) {
+  box-shadow: 0 5px 30px rgba(0, 255, 252, 0.5);
+}
+
+.gacha-draw-btn:active:not(:disabled) {
+  transform: scale(0.96);
+  box-shadow: 0 2px 10px rgba(0, 255, 252, 0.4);
+}
+
+.gacha-draw-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   Spinning Animation
+   ======================================== */
+.gacha-animation {
+  padding: 3rem 0;
+}
+
+.gacha-spinning-text {
+  font-size: 0.9rem;
+  color: #888;
+  letter-spacing: 0.2em;
+}
+
+/* ========================================
+   Result Card
+   ======================================== */
+.result-card {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 360px;
+  animation: resultReveal 0.6s ease-out;
+}
+
+@keyframes resultReveal {
+  0%   { opacity: 0; transform: scale(0.8); }
+  50%  { transform: scale(1.02); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.result-tier-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  padding: 0.3rem 1.2rem;
+  border-radius: 20px;
+  border: 1px solid;
+  margin-bottom: 1rem;
+}
+
+.result-tier {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.1em;
+}
+
+.result-description {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 1.5rem;
+  min-height: 1em;
+}
+
+.result-instruction {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #00fffc;
+  padding-top: 1rem;
+  border-top: 1px solid #222;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.result-already {
+  font-size: 0.75rem;
+  color: #888;
+  margin-top: 0.5rem;
+}
+
+/* ========================================
+   Stock Visualization
+   ======================================== */
+.gacha-stock {
+  width: 100%;
+  max-width: 480px;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #0a0a0a;
+  border-radius: 12px;
+  border: 1px solid #222;
+}
+
+.stock-title {
+  font-size: 0.8rem;
+  color: #888;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem 0;
+}
+
+.stock-total {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.stock-total-num {
+  color: #00fffc;
+}
+
+.stock-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.stock-row {
+  display: grid;
+  grid-template-columns: 70px 1fr 50px;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stock-empty {
+  opacity: 0.3;
+}
+
+.stock-label {
+  font-size: 0.8rem;
+  text-align: left;
+  white-space: nowrap;
+  color: #ccc;
+  letter-spacing: 0.05em;
+}
+
+.stock-bar-bg {
+  height: 4px;
+  background: #222;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.stock-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00fffc, #fc00ff);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.stock-count {
+  font-size: 0.75rem;
+  color: #888;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ========================================
+   Sold Out
+   ======================================== */
+.soldout-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #888;
+  letter-spacing: 0.3em;
+  margin: 0;
+}
+
+.soldout-text {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+/* ========================================
+   Error
+   ======================================== */
+.error-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fc00ff;
+  margin: 0;
+}
+
+.error-message {
+  font-size: 0.9rem;
+  color: #888;
+  margin: 0;
+}
+
+/* ========================================
+   Confetti
+   ======================================== */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -10px;
+  width: 10px;
+  height: 10px;
+  opacity: 0.9;
+  animation: confettiFall 3s ease-in forwards;
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* ========================================
+   Loading Spinner
+   ======================================== */
+.gacha-spinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #222;
+  border-top-color: #00fffc;
+  border-radius: 50%;
+  animation: gachaSpin 0.8s linear infinite;
+}
+
+@keyframes gachaSpin {
+  to { transform: rotate(360deg); }
+}
+
+.gacha-loading-text {
+  font-size: 0.85rem;
+  color: #888;
+  letter-spacing: 0.2em;
+  margin: 0;
+}
+
+/* ========================================
+   Staff Trigger Button
+   ======================================== */
+.staff-trigger {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  background: #1a1a1a;
+  color: #888;
+  border: 1px solid #444;
+  padding: 0.5rem 1rem;
+  min-height: 36px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  touch-action: manipulation;
+  z-index: 100;
+  transition: border-color 0.2s;
+}
+
+.staff-trigger:active {
+  border-color: #00fffc;
+}
+
+/* ========================================
+   Staff Auth Modal
+   ======================================== */
+.staff-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+}
+
+.staff-modal.active {
+  display: flex;
+}
+
+.staff-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.staff-modal-content {
+  position: relative;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  width: calc(100% - 2rem);
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.staff-modal-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #888;
+  letter-spacing: 0.15em;
+  margin: 0;
+}
+
+.staff-input {
+  width: 100%;
+  background: #0a0a0a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-family: inherit;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  letter-spacing: 0.3em;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.staff-input:focus {
+  border-color: #00fffc;
+}
+
+.staff-error {
+  font-size: 0.8rem;
+  color: #fc00ff;
+  margin: 0;
+  min-height: 1.2em;
+}
+
+.staff-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.staff-action-primary {
+  background: linear-gradient(135deg, #00fffc, #fc00ff);
+  color: #000;
+  font-weight: 600;
+  border: none;
+}
+
+.staff-action-primary:active {
+  opacity: 0.8;
+}
+
+.staff-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.staff-action-btn {
+  width: 100%;
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 0.75rem;
+  min-height: 44px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.staff-action-btn:active {
+  background: #333;
+  border-color: #00fffc;
+}
+
+.staff-action-danger {
+  color: #ff4444;
+  border-color: #442222;
+}
+
+.staff-action-danger:active {
+  border-color: #ff4444;
+}
+
+.staff-close-btn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 0.8rem;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  touch-action: manipulation;
+}
+
+/* ========================================
+   Responsive - larger screens
+   ======================================== */
+@media (min-width: 481px) {
+  .gacha-page {
+    padding: 2rem 1rem 5rem;
+  }
+
+  .gacha-title {
+    font-size: 2rem;
+    letter-spacing: 0.2em;
+  }
+
+  .vinyl-record {
+    width: 200px;
+    height: 200px;
+  }
+
+  .vinyl-spinning {
+    width: 220px;
+    height: 220px;
+  }
+
+  .vinyl-label {
+    width: 65px;
+    height: 65px;
+  }
+
+  .gacha-draw-btn {
+    font-size: 1.2rem;
+    padding: 1rem 3.5rem;
+  }
+
+  .result-card {
+    padding: 2rem;
+  }
+
+  .result-tier {
+    font-size: 1.8rem;
+  }
+}
