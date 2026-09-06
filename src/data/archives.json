@@ -1,6 +1,16 @@
 {
   "archives": [
     {
+      "id": -10,
+      "year": "2026",
+      "title": "NeoN",
+      "date": "2026.09.01(Tue)",
+      "sortDate": "2026-09-01",
+      "venue": "下北沢CREAM",
+      "images": ["neon-202609.jpg"],
+      "pinned": false
+    },
+    {
       "id": -9,
       "year": "2026",
       "title": "NeoN",

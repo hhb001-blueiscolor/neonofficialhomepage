@@ -284,6 +284,7 @@ img {
     font-size: 0.9rem;
     color: var(--color-text-muted);
     font-style: italic;
+    font-weight: 700;
     margin-top: var(--spacing-xs);
 }
 

@@ -3,11 +3,11 @@
     {
       "id": 1,
       "title": "NeoN",
-      "date": "2026.09.01(Tue)",
+      "date": "2026.10.06(Tue)",
       "venue": "下北沢CREAM",
       "venueUrl": "https://maps.app.goo.gl/kWn7MfTLiCtdhdjm6",
       "price": null,
-      "images": ["neon-202609.jpg"],
+      "images": ["neon-202610.jpeg"],
       "ticketUrl": null,
       "note": null
     },
@@ -18,7 +18,7 @@
       "venue": "Forest Clock森 -札幌-",
       "venueUrl": "https://maps.app.goo.gl/jSBrmZRpe2RPwjwh8",
       "price": null,
-      "images": ["solfaxneon-v2.jpg"],
+      "images": ["solfaxneon-v2.jpg", "solfaxneon-tt.jpeg"],
       "ticketUrl": "https://tiget.net/events/497041",
       "note": null
     },
@@ -29,9 +29,21 @@
       "venue": "下北沢CREAM -東京-",
       "venueUrl": "https://maps.app.goo.gl/kWn7MfTLiCtdhdjm6",
       "price": null,
-      "images": ["solfaxneon-v2.jpg"],
+      "images": ["solfaxneon-v2.jpg", "neonxsolfa-tt.jpeg"],
       "ticketUrl": "https://tiget.net/events/496933",
       "note": null
+    },
+    {
+      "id": 4,
+      "title": "JUNE ROCK FESTIVAL 2026",
+      "titleUrl": "https://junerockfes.com/",
+      "date": "2026.10.10(Sat)",
+      "venue": "川崎 CLUB CITTA'",
+      "venueUrl": "https://clubcitta.co.jp/",
+      "price": null,
+      "images": ["junrock2026-a.jpeg", "junrock2026-b.jpeg"],
+      "ticketUrl": null,
+      "note": "NeoNより「クロマティーゆうや」「みゃん」が出演いたします"
     }
   ]
 }

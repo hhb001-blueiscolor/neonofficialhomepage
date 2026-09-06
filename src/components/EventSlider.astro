@@ -22,7 +22,13 @@ const { events } = eventsData;
                             ))}
                         </div>
                         <div class="event-details">
-                            <h3 class="event-title">{event.title}</h3>
+                            <h3 class="event-title">
+                                {event.titleUrl ? (
+                                    <a href={event.titleUrl} target="_blank" rel="noopener">{event.title}</a>
+                                ) : (
+                                    event.title
+                                )}
+                            </h3>
                             <div class="event-meta">
                                 <p class="event-date">
                                     <i class="fas fa-calendar-alt"></i>
