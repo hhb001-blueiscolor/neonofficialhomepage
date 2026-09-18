@@ -7,7 +7,7 @@
       "date": "2026.09.01(Tue)",
       "sortDate": "2026-09-01",
       "venue": "下北沢CREAM",
-      "images": ["neon-202609.jpg"],
+      "images": ["neon-202609.jpg", "archive-202609-photo.jpeg"],
       "pinned": false
     },
     {
@@ -17,7 +17,7 @@
       "date": "2026.08.04(Tue)",
       "sortDate": "2026-08-04",
       "venue": "下北沢CREAM",
-      "images": ["neon-202608.jpeg"],
+      "images": ["neon-202608.jpeg", "archive-202608-photo.jpeg"],
       "pinned": false
     },
     {
@@ -27,7 +27,7 @@
       "date": "2026.07.14(Tue)",
       "sortDate": "2026-07-14",
       "venue": "下北沢CREAM",
-      "images": ["neon-202607.jpeg"],
+      "images": ["neon-202607.jpeg", "archive-202607-photo.jpeg"],
       "pinned": false
     },
     {
@@ -37,7 +37,7 @@
       "date": "2026.06.13(Sat)",
       "sortDate": "2026-06-13",
       "venue": "下北沢CREAM",
-      "images": ["neon-202606.jpeg", "neon-202606-2.jpeg"],
+      "images": ["neon-202606.jpeg", "neon-202606-2.jpeg", "archive-202606-photo-a.jpeg", "archive-202606-photo-b.jpeg"],
       "pinned": false
     },
     {
@@ -47,7 +47,7 @@
       "date": "2026.06.02(Tue)",
       "sortDate": "2026-06-02",
       "venue": "下北沢CREAM",
-      "images": ["neon-202606a-1.jpeg", "neon-202606a-2.jpeg"],
+      "images": ["neon-202606a-1.jpeg", "neon-202606a-2.jpeg", "archive-202606a-photo.jpeg"],
       "pinned": false
     },
     {
@@ -57,7 +57,7 @@
       "date": "2026.05.12(Tue)",
       "sortDate": "2026-05-12",
       "venue": "下北沢CREAM",
-      "images": ["neon-202605.jpeg"],
+      "images": ["neon-202605.jpeg", "archive-202605-photo.jpeg"],
       "pinned": false
     },
     {
@@ -67,7 +67,7 @@
       "date": "2026.04.07(Tue)",
       "sortDate": "2026-04-07",
       "venue": "下北沢CREAM",
-      "images": ["neon-202604.jpeg"],
+      "images": ["neon-202604.jpeg", "archive-202604-photo.jpeg"],
       "pinned": false
     },
     {
@@ -87,7 +87,7 @@
       "date": "2026.03.03(Tue)",
       "sortDate": "2026-03-03",
       "venue": "下北沢CREAM",
-      "images": ["neon-202603.jpeg"],
+      "images": ["neon-202603.jpeg", "archive-202603-photo.jpeg"],
       "pinned": false
     },
     {
@@ -97,7 +97,7 @@
       "date": "2026.02.03(Tue)",
       "sortDate": "2026-02-03",
       "venue": "下北沢CREAM",
-      "images": ["neon-202602.jpg"],
+      "images": ["neon-202602.jpg", "archive-202602-photo.jpeg"],
       "pinned": false
     },
     {
@@ -107,7 +107,7 @@
       "date": "2026.01.06(Tue)",
       "sortDate": "2026-01-06",
       "venue": "下北沢CREAM 3F",
-      "images": ["snack-neon-202601.jpeg"],
+      "images": ["snack-neon-202601.jpeg", "archive-202601-photo.jpeg"],
       "pinned": false
     },
     {
@@ -127,7 +127,7 @@
       "date": "2025.12.02(Tue)",
       "sortDate": "2025-12-02",
       "venue": "下北沢CREAM",
-      "images": ["TT_202512.jpg"],
+      "images": ["TT_202512.jpg", "archive-202512-photo.jpeg"],
       "pinned": false
     },
     {
@@ -137,7 +137,7 @@
       "date": "2025.11.04(Tue)",
       "sortDate": "2025-11-04",
       "venue": "下北沢CREAM",
-      "images": ["202511.jpeg"],
+      "images": ["202511.jpeg", "archive-202511-photo.jpeg"],
       "pinned": false
     },
     {
@@ -147,7 +147,7 @@
       "date": "2025.10.07(Tue)",
       "sortDate": "2025-10-07",
       "venue": "下北沢CREAM",
-      "images": ["202510.jpeg"],
+      "images": ["202510.jpeg", "archive-202510-photo.jpeg"],
       "pinned": false
     },
     {
@@ -157,7 +157,7 @@
       "date": "2025.09.02(Tue)",
       "sortDate": "2025-09-02",
       "venue": "下北沢CREAM",
-      "images": ["202509.jpeg"],
+      "images": ["202509.jpeg", "archive-202509-photo.jpeg"],
       "pinned": false
     },
     {
@@ -167,7 +167,7 @@
       "date": "2025.08.05(Tue)",
       "sortDate": "2025-08-05",
       "venue": "下北沢CREAM",
-      "images": ["202508.jpeg"],
+      "images": ["202508.jpeg", "archive-202508-photo.jpeg"],
       "pinned": false
     },
     {
@@ -177,7 +177,7 @@
       "date": "2025.07.01(Tue)",
       "sortDate": "2025-07-01",
       "venue": "下北沢CREAM",
-      "images": ["20250701.jpeg", "202507.jpeg"],
+      "images": ["20250701.jpeg", "202507.jpeg", "archive-202507-photo.jpeg"],
       "pinned": false
     },
     {
@@ -207,7 +207,7 @@
       "date": "2025.05.13(Tue)",
       "sortDate": "2025-05-13",
       "venue": "下北沢CREAM",
-      "images": ["TT_202505.jpeg"],
+      "images": ["TT_202505.jpeg", "archive-202505-photo.jpeg"],
       "pinned": false
     },
     {
@@ -227,7 +227,7 @@
       "date": "2025.04.01(Tue)",
       "sortDate": "2025-04-01",
       "venue": "下北沢CREAM",
-      "images": ["202504.jpeg"],
+      "images": ["202504.jpeg", "archive-202504-photo.jpeg"],
       "pinned": false
     },
     {
@@ -237,7 +237,7 @@
       "date": "2025.03.04(Tue)",
       "sortDate": "2025-03-04",
       "venue": "下北沢CREAM",
-      "images": ["202503.jpeg"],
+      "images": ["202503.jpeg", "archive-202503-photo.jpeg"],
       "pinned": false
     },
     {
@@ -247,7 +247,7 @@
       "date": "2025.02.04(Tue)",
       "sortDate": "2025-02-04",
       "venue": "下北沢CREAM",
-      "images": ["202502.jpeg"],
+      "images": ["202502.jpeg", "archive-202502-photo.jpeg"],
       "pinned": false
     },
     {
