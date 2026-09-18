@@ -214,13 +214,14 @@ img {
 .event-images {
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-xs);
     background: var(--color-bg-secondary);
 }
 
 .event-image {
     width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     cursor: pointer;
     transition: var(--transition-normal);
 }
@@ -229,17 +230,6 @@ img {
     opacity: 0.8;
 }
 
-.event-images .event-image:not(:first-child) {
-    display: none;
-}
-
-@media (min-width: 600px) {
-    .event-images .event-image:not(:first-child) {
-        display: block;
-        aspect-ratio: auto;
-        max-height: 200px;
-    }
-}
 
 .event-details {
     padding: var(--spacing-md);
@@ -650,11 +640,6 @@ footer p {
 
     .event-card-inner {
         grid-template-columns: 1fr;
-    }
-
-    .event-images {
-        max-height: 280px;
-        overflow: hidden;
     }
 
     .members-grid {
