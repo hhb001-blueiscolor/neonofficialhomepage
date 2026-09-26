@@ -1,6 +1,16 @@
 {
   "archives": [
     {
+      "id": -11,
+      "year": "2026",
+      "title": "Sol-fa × NeoN",
+      "date": "2026.09.26(Sat)",
+      "sortDate": "2026-09-26",
+      "venue": "Forest Clock森 -札幌-",
+      "images": ["solfaxneon-v2.jpg", "solfaxneon-tt.jpeg", "archive-solfaxneon-photo.jpg"],
+      "pinned": false
+    },
+    {
       "id": -10,
       "year": "2026",
       "title": "NeoN",
