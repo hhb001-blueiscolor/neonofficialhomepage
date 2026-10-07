@@ -3,23 +3,12 @@
     {
       "id": 1,
       "title": "NeoN",
-      "date": "2026.10.06(Tue)",
+      "date": "2026.11.10(Tue)",
       "venue": "下北沢CREAM",
       "venueUrl": "https://maps.app.goo.gl/kWn7MfTLiCtdhdjm6",
       "price": null,
-      "images": ["neon-202610.jpeg"],
+      "images": ["now_printing.svg"],
       "ticketUrl": null,
-      "note": null
-    },
-    {
-      "id": 3,
-      "title": "NeoN × Sol-fa",
-      "date": "2026.10.03(Sat)",
-      "venue": "下北沢CREAM -東京-",
-      "venueUrl": "https://maps.app.goo.gl/kWn7MfTLiCtdhdjm6",
-      "price": null,
-      "images": ["solfaxneon-v2.jpg", "neonxsolfa-tt.jpeg"],
-      "ticketUrl": "https://tiget.net/events/496933",
       "note": null
     },
     {

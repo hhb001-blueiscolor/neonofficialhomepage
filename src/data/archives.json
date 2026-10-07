@@ -1,6 +1,26 @@
 {
   "archives": [
     {
+      "id": -13,
+      "year": "2026",
+      "title": "NeoN",
+      "date": "2026.10.06(Tue)",
+      "sortDate": "2026-10-06",
+      "venue": "下北沢CREAM",
+      "images": ["neon-202610.jpeg"],
+      "pinned": false
+    },
+    {
+      "id": -12,
+      "year": "2026",
+      "title": "NeoN × Sol-fa",
+      "date": "2026.10.03(Sat)",
+      "sortDate": "2026-10-03",
+      "venue": "下北沢CREAM -東京-",
+      "images": ["solfaxneon-v2.jpg", "neonxsolfa-tt.jpeg", "archive-neonxsolfa-photo.jpeg"],
+      "pinned": false
+    },
+    {
       "id": -11,
       "year": "2026",
       "title": "Sol-fa × NeoN",
