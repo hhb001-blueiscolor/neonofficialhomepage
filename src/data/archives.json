@@ -1,6 +1,17 @@
 {
   "archives": [
     {
+      "id": -14,
+      "year": "2026",
+      "title": "JUNE ROCK FESTIVAL 2026",
+      "titleUrl": "https://junerockfes.com/",
+      "date": "2026.10.10(Sat)",
+      "sortDate": "2026-10-10",
+      "venue": "川崎 CLUB CITTA'",
+      "images": ["junrock2026-a.jpeg", "junrock2026-b.jpeg", "junrock2026-c.jpg", "junrock2026-d.jpeg"],
+      "pinned": false
+    },
+    {
       "id": -13,
       "year": "2026",
       "title": "NeoN",
