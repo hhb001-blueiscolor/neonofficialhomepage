@@ -28,6 +28,8 @@ interface Props {
         feature6Title?: string;
         feature6Desc?: string;
         feature6Note?: string;
+        featureMacTitle?: string;
+        featureMacDesc?: string;
         useCases: string;
         useCase1Title: string;
         useCase1Desc: string;
@@ -182,6 +184,16 @@ const languages = [
                     <h3>{t.feature6Title}</h3>
                     <p>{t.feature6Desc}</p>
                     {t.feature6Note && <p class="feature-note-warning">{t.feature6Note}</p>}
+                </div>
+                )}
+
+                {t.featureMacTitle && (
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>{t.featureMacTitle}</h3>
+                    <p>{t.featureMacDesc}</p>
                 </div>
                 )}
             </div>
