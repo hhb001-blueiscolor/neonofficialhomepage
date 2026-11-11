@@ -1,6 +1,16 @@
 {
   "archives": [
     {
+      "id": -15,
+      "year": "2026",
+      "title": "NeoN",
+      "date": "2026.11.10(Tue)",
+      "sortDate": "2026-11-10",
+      "venue": "下北沢CREAM",
+      "images": ["neon-202611.jpg", "archive-202611-photo.jpeg"],
+      "pinned": false
+    },
+    {
       "id": -14,
       "year": "2026",
       "title": "JUNE ROCK FESTIVAL 2026",
